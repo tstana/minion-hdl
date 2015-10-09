@@ -128,6 +128,10 @@ architecture behav of minion is
   signal ud_or          : std_logic;
   signal wd_or          : std_logic;
 
+  signal trig           : unsigned(g_num_fadc_boards-1 downto 0);
+  signal hit            : unsigned(g_num_fadc_boards-1 downto 0);
+  signal sum            : unsigned(g_num_fadc_boards-1 downto 0);
+
 --=============================================================================
 -- architecture begin
 --=============================================================================
@@ -168,6 +172,29 @@ begin
   begin
     if rising_edge(clk_i) then
       temp_o <= temp_mux;
+    end if;
+  end process;
+
+  --===========================================================================
+  -- One-hit veto implementation
+  --===========================================================================
+  trig <= unsigned(trig_i);
+  hit  <= unsigned(hit_i);
+  sum  <= trig + hit;
+
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      trig_or_o <= '0';
+      if (onehit_en_i = '1') then
+        if (trig > 1) or (hit > 1) or (sum > 1) then
+          trig_or_o <= '1';
+        end if;
+      else
+        if (trig /= (trig'range => '0')) then
+          trig_or_o <= '1';
+        end if;
+      end if;
     end if;
   end process;
 
