@@ -91,7 +91,7 @@ entity minion is
     -- Ports to the power board
     ---------------------------------------------------------------------------
     fadc_pwr_en_o  : out std_logic_vector(g_num_fadc_boards-1 downto 0);
-    pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+--    pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
     dio_pwr_en_o   : out std_logic;
     spwrt_pwr_en_o : out std_logic;
     sp3_pwr_en_o   : out std_logic
@@ -162,7 +162,7 @@ begin
   -- Power enable outputs assignment
   --===========================================================================
   fadc_pwr_en_o  <= fadc_pwr_en;
-  pmt_pwr_en_o   <= pmt_pwr_en;
+--  pmt_pwr_en_o   <= pmt_pwr_en;
   dio_pwr_en_o   <= dio_pwr_en;
   spwrt_pwr_en_o <= spwrt_pwr_en;
   sp3_pwr_en_o   <= sp3_pwr_en;
