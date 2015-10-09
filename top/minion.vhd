@@ -114,6 +114,7 @@ architecture behav of minion is
   signal sh_reg         : std_logic_vector(39 downto 0);
   signal data_from_iub  : std_logic_vector(39 downto 0);
 
+  signal temp_mux       : std_logic;
   signal temp_sel       : std_logic_vector( 4 downto 0);
 
   signal fadc_pwr_en    : std_logic_vector(g_num_fadc_boards-1 downto 0);
@@ -121,6 +122,11 @@ architecture behav of minion is
   signal dio_pwr_en     : std_logic;
   signal spwrt_pwr_en   : std_logic;
   signal sp3_pwr_en     : std_logic;
+
+  signal writing_and    : std_logic;
+  signal writing_or     : std_logic;
+  signal ud_or          : std_logic;
+  signal wd_or          : std_logic;
 
 --=============================================================================
 -- architecture begin
@@ -156,35 +162,63 @@ begin
   --===========================================================================
   -- Temperature MUX output assignment
   --===========================================================================
-  temp_o <= temp_i(to_integer(unsigned(temp_sel)));
+  temp_mux <= temp_i(to_integer(unsigned(temp_sel)));
+
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      temp_o <= temp_mux;
+    end if;
+  end process;
 
   --===========================================================================
   -- Power enable outputs assignment
   --===========================================================================
-  fadc_pwr_en_o  <= fadc_pwr_en;
---  pmt_pwr_en_o   <= pmt_pwr_en;
-  dio_pwr_en_o   <= dio_pwr_en;
-  spwrt_pwr_en_o <= spwrt_pwr_en;
-  sp3_pwr_en_o   <= sp3_pwr_en;
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      fadc_pwr_en_o  <= fadc_pwr_en;
+    --  pmt_pwr_en_o   <= pmt_pwr_en;
+      dio_pwr_en_o   <= dio_pwr_en;
+      spwrt_pwr_en_o <= spwrt_pwr_en;
+      sp3_pwr_en_o   <= sp3_pwr_en;
+    end if;
+  end process;
 
   --===========================================================================
   -- FADC -> DIO outputs
   --===========================================================================
   -- FADCs writing
-  writing_and_o <= '1' when (writing_i  = (writing_i'range => '1')) else '0';
-  writing_or_o  <= '1' when (writing_i /= (writing_i'range => '0')) else '0';
+  writing_and <= '1' when (writing_i  = (writing_i'range => '1')) else '0';
+  writing_or  <= '1' when (writing_i /= (writing_i'range => '0')) else '0';
 
   -- Upper Discrimination (UD) & Waveform Discrimination (WD) veto signals
-  ud_or_o  <= '1' when (ud_i /= (ud_i'range => '0')) else '0';
-  wd_or_o  <= '1' when (wd_i /= (wd_i'range => '0')) else '0';
+  ud_or  <= '1' when (ud_i /= (ud_i'range => '0')) else '0';
+  wd_or  <= '1' when (wd_i /= (wd_i'range => '0')) else '0';
+
+  -- Assign the outputs
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      writing_and_o <= writing_and;
+      writing_or_o  <= writing_or;
+      ud_or_o       <= ud_or;
+      wd_or_o       <= wd_or;
+    end if;
+  end process;
 
   --===========================================================================
   -- DIO -> FADC outputs
   --===========================================================================
-  do_write_o   <= (do_write_o'range   => do_write_i);
-  pps_pseudo_o <= (pps_pseudo_o'range => pps_pseudo_i);
-  start_stop_o <= (start_stop_o'range => start_stop_i);
-  reset_veto_o <= (reset_veto_o'range => reset_veto_i);
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      do_write_o   <= (do_write_o'range   => do_write_i);
+      pps_pseudo_o <= (pps_pseudo_o'range => pps_pseudo_i);
+      start_stop_o <= (start_stop_o'range => start_stop_i);
+      reset_veto_o <= (reset_veto_o'range => reset_veto_i);
+    end if;
+  end process;
 
 end architecture behav;
 --=============================================================================
