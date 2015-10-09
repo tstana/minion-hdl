@@ -42,26 +42,59 @@ entity minion is
   port
   (
     ---------------------------------------------------------------------------
-    -- Ports for one-hit veto
+    -- FADC & DIO side ports
     ---------------------------------------------------------------------------
+    -- Trigger and one-hit ports
     clk_i          : in  std_logic;
+    onehit_en_i    : in  std_logic;
     trig_i         : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
     hit_i          : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
+    trig_or_o      : out std_logic;
+
+    reset_veto_i   : in  std_logic;
+    reset_veto_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+
+    -- FADC -> DIO
+    writing_i      : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
+    writing_or_o   : out std_logic;
+    writing_and_o  : out std_logic;
+
+    ud_i           : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
+    ud_or_o        : out std_logic;
+
+    wd_i           : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
+    wd_or_o        : out std_logic;
+
+    -- DIO -> FADC
+    do_write_i     : in  std_logic;
+    do_write_o     : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+
+    pps_pseudo_i   : in  std_logic;
+    pps_pseudo_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+
+    start_stop_i   : in  std_logic;
+    start_stop_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
 
     ---------------------------------------------------------------------------
-    -- Ports for temperature multiplexing to the IUB
+    -- IUB side ports
     ---------------------------------------------------------------------------
+    -- Data shift ports
     clk_shift_i    : in  std_logic;
     clk_read_i     : in  std_logic;
     data_i         : in  std_logic;
-    temp_i         : in  std_logic_vector(18 downto 0);
 
+    -- Temperature MUX-ing ports
+    temp_i         : in  std_logic_vector(18 downto 0);
+    temp_o         : out std_logic;
+
+    ---------------------------------------------------------------------------
+    -- Ports to the power board
+    ---------------------------------------------------------------------------
     fadc_pwr_en_o  : out std_logic_vector(g_num_fadc_boards-1 downto 0);
     pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
     dio_pwr_en_o   : out std_logic;
     spwrt_pwr_en_o : out std_logic;
-    sp3_pwr_en_o   : out std_logic;
-    temp_o         : out std_logic
+    sp3_pwr_en_o   : out std_logic
   );
 end entity minion;
 
@@ -95,7 +128,7 @@ architecture behav of minion is
 begin
 
   --===========================================================================
-  -- Temperature sensor MUXing
+  -- Data input from IUB
   --===========================================================================
   -- Shift and data storage registers, controlled by signals from the IUB
   p_shift_reg : process(clk_shift_i)
@@ -112,21 +145,46 @@ begin
     end if;
   end process p_data_reg;
 
-  -- Split IUB data into needed fields
-  temp_sel        <= data_from_iub( 4 downto  0);
-  fadc_pwr_en     <= data_from_iub( 5+(g_num_fadc_boards-1) downto  5);
-  dio_pwr_en      <= data_from_iub(17);
-  spwrt_pwr_en    <= data_from_iub(18);
-  sp3_pwr_en      <= data_from_iub(20);
-  pmt_pwr_en      <= data_from_iub(21+(g_num_fadc_boards-1) downto 21);
+  -- Split IUB data into relevant fields
+  temp_sel     <= data_from_iub( 4 downto  0);
+  fadc_pwr_en  <= data_from_iub( 5+(g_num_fadc_boards-1) downto  5);
+  dio_pwr_en   <= data_from_iub(17);
+  spwrt_pwr_en <= data_from_iub(18);
+  sp3_pwr_en   <= data_from_iub(20);
+  pmt_pwr_en   <= data_from_iub(21+(g_num_fadc_boards-1) downto 21);
 
-  -- Assign outputs (power enable signals + temp. sensor MUX)
-  fadc_pwr_en_o   <= fadc_pwr_en;
-  pmt_pwr_en_o    <= pmt_pwr_en;
-  dio_pwr_en_o    <= dio_pwr_en;
-  spwrt_pwr_en_o  <= spwrt_pwr_en;
-  sp3_pwr_en_o    <= sp3_pwr_en;
-  temp_o          <= temp_i(to_integer(unsigned(temp_sel)));
+  --===========================================================================
+  -- Temperature MUX output assignment
+  --===========================================================================
+  temp_o <= temp_i(to_integer(unsigned(temp_sel)));
+
+  --===========================================================================
+  -- Power enable outputs assignment
+  --===========================================================================
+  fadc_pwr_en_o  <= fadc_pwr_en;
+  pmt_pwr_en_o   <= pmt_pwr_en;
+  dio_pwr_en_o   <= dio_pwr_en;
+  spwrt_pwr_en_o <= spwrt_pwr_en;
+  sp3_pwr_en_o   <= sp3_pwr_en;
+
+  --===========================================================================
+  -- FADC -> DIO outputs
+  --===========================================================================
+  -- FADCs writing
+  writing_and_o <= '1' when (writing_i  = (writing_i'range => '1')) else '0';
+  writing_or_o  <= '1' when (writing_i /= (writing_i'range => '0')) else '0';
+
+  -- Upper Discrimination (UD) & Waveform Discrimination (WD) veto signals
+  ud_or_o  <= '1' when (ud_i /= (ud_i'range => '0')) else '0';
+  wd_or_o  <= '1' when (wd_i /= (wd_i'range => '0')) else '0';
+
+  --===========================================================================
+  -- DIO -> FADC outputs
+  --===========================================================================
+  do_write_o   <= (do_write_o'range   => do_write_i);
+  pps_pseudo_o <= (pps_pseudo_o'range => pps_pseudo_i);
+  start_stop_o <= (start_stop_o'range => start_stop_i);
+  reset_veto_o <= (reset_veto_o'range => reset_veto_i);
 
 end architecture behav;
 --=============================================================================
