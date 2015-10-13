@@ -69,8 +69,8 @@ entity minion is
     do_write_i     : in  std_logic;
     do_write_o     : out std_logic_vector(g_num_fadc_boards-1 downto 0);
 
-    pps_pseudo_i   : in  std_logic;
-    pps_pseudo_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+    pseudo_pps_i   : in  std_logic;
+    pseudo_pps_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
 
     start_stop_i   : in  std_logic;
     start_stop_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
@@ -80,7 +80,7 @@ entity minion is
     ---------------------------------------------------------------------------
     -- Data shift ports
     clk_shift_i    : in  std_logic;
-    clk_read_i     : in  std_logic;
+    read_i         : in  std_logic;
     data_i         : in  std_logic;
 
     -- Temperature MUX-ing ports
@@ -111,6 +111,7 @@ architecture behav of minion is
   --===========================================================================
   -- Signals
   --===========================================================================
+  signal read_dly       : std_logic_vector(39 downto 0);
   signal sh_reg         : std_logic_vector(39 downto 0);
   signal data_from_iub  : std_logic_vector(39 downto 0);
 
@@ -144,16 +145,15 @@ begin
   p_shift_reg : process(clk_shift_i)
   begin
     if rising_edge(clk_shift_i) then
-      sh_reg <= data_i & sh_reg(39 downto 1);
+      sh_reg   <= sh_reg(38 downto 0) & data_i;
+      read_dly <= read_dly(38 downto 0) & read_i;
+      if (read_dly(39) = '1') then
+        for i in 0 to 39 loop
+          data_from_iub(i) <= sh_reg(39-i);
+        end loop;
+      end if;
     end if;
   end process p_shift_reg;
-
-  p_data_reg : process(clk_read_i)
-  begin
-    if rising_edge(clk_read_i) then
-      data_from_iub <= sh_reg;
-    end if;
-  end process p_data_reg;
 
   -- Split IUB data into relevant fields
   temp_sel     <= data_from_iub( 4 downto  0);
@@ -241,7 +241,7 @@ begin
   begin
     if rising_edge(clk_i) then
       do_write_o   <= (do_write_o'range   => do_write_i);
-      pps_pseudo_o <= (pps_pseudo_o'range => pps_pseudo_i);
+      pseudo_pps_o <= (pseudo_pps_o'range => pseudo_pps_i);
       start_stop_o <= (start_stop_o'range => start_stop_i);
       reset_veto_o <= (reset_veto_o'range => reset_veto_i);
     end if;
