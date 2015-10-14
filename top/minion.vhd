@@ -103,10 +103,18 @@ architecture behav of minion is
   --===========================================================================
   -- Functions
   --===========================================================================
+  function f_count_ones(v : std_logic_vector) return unsigned is
+      variable n : unsigned(3-1 downto 0);
+  begin
+    n := (others => '0');
+    for i in v'high downto 0 loop
+      if v(i) = '1' then
+        n := n+1;
+      end if;
+    end loop;
+    return n;
+  end function;
 
-  --===========================================================================
-  -- Types
-  --===========================================================================
 
   --===========================================================================
   -- Signals
@@ -178,8 +186,8 @@ begin
   --===========================================================================
   -- One-hit veto implementation
   --===========================================================================
-  trig <= unsigned(trig_i);
-  hit  <= unsigned(hit_i);
+  trig <= f_count_ones(trig_i);
+  hit  <= f_count_ones(hit_i);
   sum  <= trig + hit;
 
   process (clk_i)
