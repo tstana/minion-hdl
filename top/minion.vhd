@@ -137,9 +137,9 @@ architecture behav of minion is
   signal ud_or          : std_logic;
   signal wd_or          : std_logic;
 
-  signal trig           : unsigned(g_num_fadc_boards-1 downto 0);
-  signal hit            : unsigned(g_num_fadc_boards-1 downto 0);
-  signal sum            : unsigned(g_num_fadc_boards-1 downto 0);
+  signal trig           : unsigned(3-1 downto 0);
+  signal hit            : unsigned(3-1 downto 0);
+  signal sum            : unsigned(3-1 downto 0);
 
 --=============================================================================
 -- architecture begin
