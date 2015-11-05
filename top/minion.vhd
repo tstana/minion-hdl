@@ -107,6 +107,7 @@ architecture behav of minion is
   --===========================================================================
   -- Functions
   --===========================================================================
+  -- TODO: Remove me!
   function f_count_ones(v : std_logic_vector) return unsigned is
       variable n : unsigned(3-1 downto 0);
   begin
@@ -140,6 +141,7 @@ architecture behav of minion is
   signal ud_or          : std_logic;
   signal wd_or          : std_logic;
 
+  -- TODO: Remove me!
   signal trig           : unsigned(3-1 downto 0);
   signal hit            : unsigned(3-1 downto 0);
   signal sum            : unsigned(3-1 downto 0);
