@@ -37,16 +37,19 @@ use ieee.numeric_std.all;
 entity minion is
   generic
   (
-    g_num_fadc_boards  : natural := 6
+    g_num_fadc_boards  : natural range 1 to 12 := 6
   );
   port
   (
     ---------------------------------------------------------------------------
+    -- Clock
+    ---------------------------------------------------------------------------
+    clk_i          : in  std_logic;
+
+    ---------------------------------------------------------------------------
     -- FADC & DIO side ports
     ---------------------------------------------------------------------------
-    -- Trigger and one-hit ports
-    clk_i          : in  std_logic;
-    onehit_en_i    : in  std_logic;
+    -- FADC -> DIO
     trig_i         : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
     hit_i          : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
     trig_or_o      : out std_logic;
@@ -54,7 +57,6 @@ entity minion is
     reset_veto_i   : in  std_logic;
     reset_veto_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
 
-    -- FADC -> DIO
     writing_i      : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
     writing_or_o   : out std_logic;
     writing_and_o  : out std_logic;
@@ -66,6 +68,8 @@ entity minion is
     wd_or_o        : out std_logic;
 
     -- DIO -> FADC
+    onehit_en_i    : in  std_logic;
+
     do_write_i     : in  std_logic;
     do_write_o     : out std_logic_vector(g_num_fadc_boards-1 downto 0);
 
@@ -84,14 +88,14 @@ entity minion is
     data_i         : in  std_logic;
 
     -- Temperature MUX-ing ports
-    temp_i         : in  std_logic_vector(18 downto 0);
+    temp_i         : in  std_logic_vector(15 downto 0);
     temp_o         : out std_logic;
 
     ---------------------------------------------------------------------------
     -- Ports to the power board
     ---------------------------------------------------------------------------
     fadc_pwr_en_o  : out std_logic_vector(g_num_fadc_boards-1 downto 0);
---    pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+    pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
     dio_pwr_en_o   : out std_logic;
     spwrt_pwr_en_o : out std_logic;
     sp3_pwr_en_o   : out std_logic
@@ -123,8 +127,7 @@ architecture behav of minion is
   signal sh_reg         : std_logic_vector(39 downto 0);
   signal data_from_iub  : std_logic_vector(39 downto 0);
 
-  signal temp_mux       : std_logic;
-  signal temp_sel       : std_logic_vector( 4 downto 0);
+  signal temp_sel       : std_logic_vector( 3 downto 0);
 
   signal fadc_pwr_en    : std_logic_vector(g_num_fadc_boards-1 downto 0);
   signal pmt_pwr_en     : std_logic_vector(g_num_fadc_boards-1 downto 0);
@@ -164,24 +167,18 @@ begin
   end process p_shift_reg;
 
   -- Split IUB data into relevant fields
-  temp_sel     <= data_from_iub( 4 downto  0);
-  fadc_pwr_en  <= data_from_iub( 5+(g_num_fadc_boards-1) downto  5);
-  dio_pwr_en   <= data_from_iub(17);
-  spwrt_pwr_en <= data_from_iub(18);
-  sp3_pwr_en   <= data_from_iub(20);
-  pmt_pwr_en   <= data_from_iub(21+(g_num_fadc_boards-1) downto 21);
+  temp_sel     <= data_from_iub( 3 downto  0);
+  fadc_pwr_en  <= data_from_iub( 4+(g_num_fadc_boards-1) downto  4);
+  dio_pwr_en   <= data_from_iub(16);
+  spwrt_pwr_en <= data_from_iub(17);
+  sp3_pwr_en   <= data_from_iub(19);
+  pmt_pwr_en   <= data_from_iub(20+(g_num_fadc_boards-1) downto 20);
 
   --===========================================================================
   -- Temperature MUX output assignment
+  -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
   --===========================================================================
-  temp_mux <= temp_i(to_integer(unsigned(temp_sel)));
-
-  process (clk_i)
-  begin
-    if rising_edge(clk_i) then
-      temp_o <= temp_mux;
-    end if;
-  end process;
+  temp_o <= temp_i(to_integer(unsigned(temp_sel)));
 
   --===========================================================================
   -- One-hit veto implementation
@@ -213,7 +210,7 @@ begin
   begin
     if rising_edge(clk_i) then
       fadc_pwr_en_o  <= fadc_pwr_en;
-    --  pmt_pwr_en_o   <= pmt_pwr_en;
+      pmt_pwr_en_o   <= pmt_pwr_en;
       dio_pwr_en_o   <= dio_pwr_en;
       spwrt_pwr_en_o <= spwrt_pwr_en;
       sp3_pwr_en_o   <= sp3_pwr_en;
