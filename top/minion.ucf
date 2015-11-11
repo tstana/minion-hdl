@@ -98,94 +98,94 @@ NET "reset_veto_o[2]"       LOC = "P134";   # fadc3_out[3]
 #------------------------------------------------------------------------------
 # FADC 4 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[3]"             LOC = "P31";    # fadc4_in[0]
-NET "writing_i[3]"          LOC = "P30";    # fadc4_in[1]
-NET "wd_i[3]"               LOC = "P29";    # fadc4_in[2]
-NET "ud_i[3]"               LOC = "P28";    # fadc4_in[3]
-NET "hit_i[3]"              LOC = "P27";    # fadc4_in[4]
-# NET ""                    LOC = "P25";    # fadc4_in[5]
-# NET ""                    LOC = "P23";    # fadc4_in[6]
-# NET ""                    LOC = "P22";    # fadc4_in[7]
+NET "trig_i[3]"             LOC = "P51";    # fadc4_in[0]
+NET "writing_i[3]"          LOC = "P50";    # fadc4_in[1]
+NET "wd_i[3]"               LOC = "P49";    # fadc4_in[2]
+NET "ud_i[3]"               LOC = "P48";    # fadc4_in[3]
+NET "hit_i[3]"              LOC = "P47";    # fadc4_in[4]
+# NET ""                    LOC = "P46";    # fadc4_in[5]
+# NET ""                    LOC = "P45";    # fadc4_in[6]
+# NET ""                    LOC = "P43";    # fadc4_in[7]
 
-NET "start_stop_o[3]"       LOC = "P40";    # fadc4_out[0]
-NET "do_write_o[3]"         LOC = "P39";    # fadc4_out[1]
-NET "pseudo_pps_o[3]"       LOC = "P38";    # fadc4_out[2]
-NET "reset_veto_o[3]"       LOC = "P37";    # fadc4_out[3]
-# NET ""                    LOC = "P36";    # fadc4_out[4]
-# NET ""                    LOC = "P35";    # fadc4_out[5]
-# NET ""                    LOC = "P34";    # fadc4_out[6]
-# NET ""                    LOC = "P32";    # fadc4_out[7]
+NET "start_stop_o[3]"       LOC = "P63";    # fadc4_out[0]
+NET "do_write_o[3]"         LOC = "P62";    # fadc4_out[1]
+NET "pseudo_pps_o[3]"       LOC = "P61";    # fadc4_out[2]
+NET "reset_veto_o[3]"       LOC = "P60";    # fadc4_out[3]
+# NET ""                    LOC = "P58";    # fadc4_out[4]
+# NET ""                    LOC = "P57";    # fadc4_out[5]
+# NET ""                    LOC = "P56";    # fadc4_out[6]
+# NET ""                    LOC = "P54";    # fadc4_out[7]
 
 #------------------------------------------------------------------------------
 # FADC 5 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[4]"             LOC = "P71";    # fadc5_in[0]
-NET "writing_i[4]"          LOC = "P70";    # fadc5_in[1]
-NET "wd_i[4]"               LOC = "P69";    # fadc5_in[2]
-NET "ud_i[4]"               LOC = "P67";    # fadc5_in[3]
-NET "hit_i[4]"              LOC = "P66";    # fadc5_in[4]
-# NET ""                    LOC = "P65";    # fadc5_in[5]
-# NET ""                    LOC = "P64";    # fadc5_in[6]
-# NET ""                    LOC = "P63";    # fadc5_in[7]
+NET "trig_i[4]"             LOC = "P32";    # fadc5_in[0]
+NET "writing_i[4]"          LOC = "P31";    # fadc5_in[1]
+NET "wd_i[4]"               LOC = "P30";    # fadc5_in[2]
+NET "ud_i[4]"               LOC = "P29";    # fadc5_in[3]
+NET "hit_i[4]"              LOC = "P28";    # fadc5_in[4]
+# NET ""                    LOC = "P27";    # fadc5_in[5]
+# NET ""                    LOC = "P25";    # fadc5_in[6]
+# NET ""                    LOC = "P23";    # fadc5_in[7]
 
-NET "start_stop_o[4]"       LOC = "P80";    # fadc5_out[0]
-NET "do_write_o[4]"         LOC = "P78";    # fadc5_out[1]
-NET "pseudo_pps_o[4]"       LOC = "P77";    # fadc5_out[2]
-NET "reset_veto_o[4]"       LOC = "P76";    # fadc5_out[3]
-# NET ""                    LOC = "P75";    # fadc5_out[4]
-# NET ""                    LOC = "P74";    # fadc5_out[5]
-# NET ""                    LOC = "P73";    # fadc5_out[6]
-# NET ""                    LOC = "P72";    # fadc5_out[7]
+NET "start_stop_o[4]"       LOC = "P41";    # fadc5_out[0]
+NET "do_write_o[4]"         LOC = "P40";    # fadc5_out[1]
+NET "pseudo_pps_o[4]"       LOC = "P39";    # fadc5_out[2]
+NET "reset_veto_o[4]"       LOC = "P38";    # fadc5_out[3]
+# NET ""                    LOC = "P37";    # fadc5_out[4]
+# NET ""                    LOC = "P36";    # fadc5_out[5]
+# NET ""                    LOC = "P35";    # fadc5_out[6]
+# NET ""                    LOC = "P34";    # fadc5_out[7]
 
 #------------------------------------------------------------------------------
 # FADC 6 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[5]"             LOC = "P50";    # fadc6_in[0]
-NET "writing_i[5]"          LOC = "P49";    # fadc6_in[1]
-NET "wd_i[5]"               LOC = "P48";    # fadc6_in[2]
-NET "ud_i[5]"               LOC = "P47";    # fadc6_in[3]
-NET "hit_i[5]"              LOC = "P46";    # fadc6_in[4]
-# NET ""                    LOC = "P45";    # fadc6_in[5]
-# NET ""                    LOC = "P43";    # fadc6_in[6]
-# NET ""                    LOC = "P41";    # fadc6_in[7]
+NET "trig_i[5]"             LOC = "P72";    # fadc6_in[0]
+NET "writing_i[5]"          LOC = "P71";    # fadc6_in[1]
+NET "wd_i[5]"               LOC = "P70";    # fadc6_in[2]
+NET "ud_i[5]"               LOC = "P69";    # fadc6_in[3]
+NET "hit_i[5]"              LOC = "P67";    # fadc6_in[4]
+# NET ""                    LOC = "P66";    # fadc6_in[5]
+# NET ""                    LOC = "P65";    # fadc6_in[6]
+# NET ""                    LOC = "P64";    # fadc6_in[7]
 
-NET "start_stop_o[5]"       LOC = "P62";    # fadc6_out[0]
-NET "do_write_o[5]"         LOC = "P61";    # fadc6_out[1]
-NET "pseudo_pps_o[5]"       LOC = "P60";    # fadc6_out[2]
-NET "reset_veto_o[5]"       LOC = "P58";    # fadc6_out[3]
-# NET ""                    LOC = "P57";    # fadc6_out[4]
-# NET ""                    LOC = "P56";    # fadc6_out[5]
-# NET ""                    LOC = "P54";    # fadc6_out[6]
-# NET ""                    LOC = "P51";    # fadc6_out[7]
+NET "start_stop_o[5]"       LOC = "P82";    # fadc6_out[0]
+NET "do_write_o[5]"         LOC = "P80";    # fadc6_out[1]
+NET "pseudo_pps_o[5]"       LOC = "P78";    # fadc6_out[2]
+NET "reset_veto_o[5]"       LOC = "P77";    # fadc6_out[3]
+# NET ""                    LOC = "P76";    # fadc6_out[4]
+# NET ""                    LOC = "P75";    # fadc6_out[5]
+# NET ""                    LOC = "P74";    # fadc6_out[6]
+# NET ""                    LOC = "P73";    # fadc6_out[7]
 
 #-----------------------76.5-------------------------------------------------------
 # DIO -> FADCs
 #------------------------------------------------------------------------------
-NET "start_stop_i"          LOC = "P8";     # dio_in[0]
-NET "do_write_i"            LOC = "P9";     # dio_in[1]
-NET "pseudo_pps_i"          LOC = "P10";    # dio_in[2]
-NET "reset_veto_i"          LOC = "P12";    # dio_in[3]
-NET "onehit_en_i"           LOC = "P18";    # dio_in[4]
-# NET ""                    LOC = "P19";    # dio_in[5]
+NET "start_stop_i"          LOC = "P90";    # dio_in[0]
+NET "do_write_i"            LOC = "P89";    # dio_in[1]
+NET "pseudo_pps_i"          LOC = "P88";    # dio_in[2]
+NET "reset_veto_i"          LOC = "P87";    # dio_in[3]
+NET "onehit_en_i"           LOC = "P22";    # dio_in[4]
+# NET ""                    LOC = "P21";    # dio_in[5]
 # NET ""                    LOC = "P20";    # dio_in[6]
-# NET ""                    LOC = "P21";    # dio_in[7]
+# NET ""                    LOC = "P19";    # dio_in[7]
 
-NET "trig_or_o"             LOC = "P4";     # dio_out[0]
-NET "writing_or_o"          LOC = "P5";     # dio_out[1]
-NET "writing_and_o"         LOC = "P6";     # dio_out[2]
-NET "ud_or_o"               LOC = "P7";     # dio_out[3]
-NET "wd_or_o"               LOC = "P14";    # dio_out[4]
-NET "pps_o"                 LOC = "P15";    # dio_out[5]
+NET "trig_or_o"             LOC = "P86";    # dio_out[0]
+NET "writing_or_o"          LOC = "P85";    # dio_out[1]
+NET "writing_and_o"         LOC = "P84";    # dio_out[2]
+NET "ud_or_o"               LOC = "P83";    # dio_out[3]
+NET "wd_or_o"               LOC = "P18";    # dio_out[4]
+NET "pps_o"                 LOC = "P17";    # dio_out[5]
 # NET ""                    LOC = "P16";    # dio_out[6]
-# NET ""                    LOC = "P17";    # dio_out[7]
+# NET ""                    LOC = "P15";    # dio_out[7]
 
 #==============================================================================
 # IUB and temperature sensors
 #==============================================================================
 
 NET "iub_clk_i"             LOC = "P55";
-NET "iub_read_i"            LOC = "P103";
-NET "iub_data_i"            LOC = "P102";
+NET "iub_read_i"            LOC = "P101";
+NET "iub_data_i"            LOC = "P100";
 
 NET "temp_i[0]"             LOC = "P110";
 NET "temp_i[1]"             LOC = "P111";
@@ -204,7 +204,9 @@ NET "temp_i[13]"            LOC = "P123";
 NET "temp_i[14]"            LOC = "P125";
 NET "temp_i[15]"            LOC = "P126";
 
-NET "iub_temp_o"            LOC = "P99";
+NET "iub_temp_o"            LOC = "P97";
+
+NET "iub_pps_i"             LOC = "P102";
 
 #==============================================================================
 # Power board
