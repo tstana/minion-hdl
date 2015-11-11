@@ -83,13 +83,17 @@ entity minion is
     -- IUB side ports
     ---------------------------------------------------------------------------
     -- Data shift ports
-    clk_shift_i    : in  std_logic;
-    read_i         : in  std_logic;
-    data_i         : in  std_logic;
+    iub_clk_i      : in  std_logic;
+    iub_read_i     : in  std_logic;
+    iub_data_i     : in  std_logic;
 
     -- Temperature MUX-ing ports
     temp_i         : in  std_logic_vector(15 downto 0);
-    temp_o         : out std_logic;
+    iub_temp_o     : out std_logic;
+
+    -- PPS port IUB -> DIO
+    iub_pps_i      : in  std_logic;
+    pps_o          : out std_logic;
 
     ---------------------------------------------------------------------------
     -- Ports to the power board
@@ -155,11 +159,11 @@ begin
   -- Data input from IUB
   --===========================================================================
   -- Shift and data storage registers, controlled by signals from the IUB
-  p_shift_reg : process(clk_shift_i)
+  p_shift_reg : process(iub_clk_i)
   begin
-    if rising_edge(clk_shift_i) then
-      sh_reg   <= sh_reg(38 downto 0) & data_i;
-      read_dly <= read_dly(38 downto 0) & read_i;
+    if rising_edge(iub_clk_i) then
+      sh_reg   <= sh_reg(38 downto 0) & iub_data_i;
+      read_dly <= read_dly(38 downto 0) & iub_read_i;
       if (read_dly(39) = '1') then
         for i in 0 to 39 loop
           data_from_iub(i) <= sh_reg(39-i);
@@ -180,7 +184,12 @@ begin
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
   --===========================================================================
-  temp_o <= temp_i(to_integer(unsigned(temp_sel)));
+  iub_temp_o <= temp_i(to_integer(unsigned(temp_sel)));
+
+  --===========================================================================
+  -- Forward PPS from IUB to DIO
+  --===========================================================================
+  pps_o <= iub_pps_i;
 
   --===========================================================================
   -- One-hit veto implementation

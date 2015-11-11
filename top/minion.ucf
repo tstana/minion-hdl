@@ -158,7 +158,7 @@ NET "reset_veto_o[5]"       LOC = "P58";    # fadc6_out[3]
 # NET ""                    LOC = "P54";    # fadc6_out[6]
 # NET ""                    LOC = "P51";    # fadc6_out[7]
 
-#------------------------------------------------------------------------------
+#-----------------------76.5-------------------------------------------------------
 # DIO -> FADCs
 #------------------------------------------------------------------------------
 NET "start_stop_i"          LOC = "P8";     # dio_in[0]
@@ -175,7 +175,7 @@ NET "writing_or_o"          LOC = "P5";     # dio_out[1]
 NET "writing_and_o"         LOC = "P6";     # dio_out[2]
 NET "ud_or_o"               LOC = "P7";     # dio_out[3]
 NET "wd_or_o"               LOC = "P14";    # dio_out[4]
-# NET ""                    LOC = "P15";    # dio_out[5]
+NET "pps_o"                 LOC = "P15";    # dio_out[5]
 # NET ""                    LOC = "P16";    # dio_out[6]
 # NET ""                    LOC = "P17";    # dio_out[7]
 
@@ -183,9 +183,9 @@ NET "wd_or_o"               LOC = "P14";    # dio_out[4]
 # IUB and temperature sensors
 #==============================================================================
 
-NET "clk_shift_i"           LOC = "P55";
-NET "read_i"                LOC = "P88";
-NET "data_i"                LOC = "P89";
+NET "iub_clk_i"             LOC = "P55";
+NET "iub_read_i"            LOC = "P103";
+NET "iub_data_i"            LOC = "P102";
 
 NET "temp_i[0]"             LOC = "P110";
 NET "temp_i[1]"             LOC = "P111";
@@ -204,7 +204,7 @@ NET "temp_i[13]"            LOC = "P123";
 NET "temp_i[14]"            LOC = "P125";
 NET "temp_i[15]"            LOC = "P126";
 
-NET "temp_o"                LOC = "P90";
+NET "iub_temp_o"            LOC = "P99";
 
 #==============================================================================
 # Power board
@@ -290,10 +290,12 @@ NET "writing_or_o"         IOSTANDARD = LVCMOS33;
 NET "writing_and_o"        IOSTANDARD = LVCMOS33;
 NET "ud_or_o"              IOSTANDARD = LVCMOS33;
 NET "wd_or_o"              IOSTANDARD = LVCMOS33;
-NET "clk_shift_i"          IOSTANDARD = LVCMOS33;
-NET "read_i"               IOSTANDARD = LVCMOS33;
-NET "data_i"               IOSTANDARD = LVCMOS33;
-NET "temp_o"               IOSTANDARD = LVCMOS33;
+NET "pps_o"                IOSTANDARD = LVCMOS33;
+NET "iub_clk_i"            IOSTANDARD = LVCMOS33;
+NET "iub_read_i"           IOSTANDARD = LVCMOS33;
+NET "iub_data_i"           IOSTANDARD = LVCMOS33;
+NET "iub_pps_i"            IOSTANDARD = LVCMOS33;
+NET "iub_temp_o"           IOSTANDARD = LVCMOS33;
 NET "fadc_pwr_en_o[0]"     IOSTANDARD = LVCMOS33;
 NET "fadc_pwr_en_o[1]"     IOSTANDARD = LVCMOS33;
 NET "fadc_pwr_en_o[2]"     IOSTANDARD = LVCMOS33;
