@@ -35,10 +35,6 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity minion is
-  generic
-  (
-    g_num_fadc_boards  : natural range 1 to 12 := 6
-  );
   port
   (
     ---------------------------------------------------------------------------
@@ -50,34 +46,24 @@ entity minion is
     -- FADC & DIO side ports
     ---------------------------------------------------------------------------
     -- FADC -> DIO
-    trig_i         : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
-    hit_i          : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
-    trig_or_o      : out std_logic;
+    fadc1_i         : in  std_logic_vector(7 downto 0);
+    fadc2_i         : in  std_logic_vector(7 downto 0);
+    fadc3_i         : in  std_logic_vector(7 downto 0);
+    fadc4_i         : in  std_logic_vector(7 downto 0);
+    fadc5_i         : in  std_logic_vector(7 downto 0);
+    fadc6_i         : in  std_logic_vector(7 downto 0);
 
-    reset_veto_i   : in  std_logic;
-    reset_veto_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
-
-    writing_i      : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
-    writing_or_o   : out std_logic;
-    writing_and_o  : out std_logic;
-
-    ud_i           : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
-    ud_or_o        : out std_logic;
-
-    wd_i           : in  std_logic_vector(g_num_fadc_boards-1 downto 0);
-    wd_or_o        : out std_logic;
+    dio_o           : out std_logic_vector(7 downto 0);
 
     -- DIO -> FADC
-    onehit_en_i    : in  std_logic;
+    dio_i           : in  std_logic_vector(7 downto 0);
 
-    do_write_i     : in  std_logic;
-    do_write_o     : out std_logic_vector(g_num_fadc_boards-1 downto 0);
-
-    pseudo_pps_i   : in  std_logic;
-    pseudo_pps_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
-
-    start_stop_i   : in  std_logic;
-    start_stop_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+    fadc1_o         : out std_logic_vector(7 downto 0);
+    fadc2_o         : out std_logic_vector(7 downto 0);
+    fadc3_o         : out std_logic_vector(7 downto 0);
+    fadc4_o         : out std_logic_vector(7 downto 0);
+    fadc5_o         : out std_logic_vector(7 downto 0);
+    fadc6_o         : out std_logic_vector(7 downto 0);
 
     ---------------------------------------------------------------------------
     -- IUB side ports
@@ -95,11 +81,16 @@ entity minion is
     iub_pps_i      : in  std_logic;
     pps_o          : out std_logic;
 
+    -- Backup signals to the IUB
+    iub_bkp1_o      : out std_logic;
+    iub_bkp2_o      : out std_logic;
+    iub_bkp3_o      : out std_logic;
+
     ---------------------------------------------------------------------------
     -- Ports to the power board
     ---------------------------------------------------------------------------
-    fadc_pwr_en_o  : out std_logic_vector(g_num_fadc_boards-1 downto 0);
-    pmt_pwr_en_o   : out std_logic_vector(g_num_fadc_boards-1 downto 0);
+    fadc_pwr_en_o  : out std_logic_vector(5 downto 0);
+    pmt_pwr_en_o   : out std_logic_vector(5 downto 0);
     dio_pwr_en_o   : out std_logic;
     spwrt_pwr_en_o : out std_logic;
     sp3_pwr_en_o   : out std_logic
@@ -134,16 +125,36 @@ architecture behav of minion is
 
   signal temp_sel       : std_logic_vector( 3 downto 0);
 
-  signal fadc_pwr_en    : std_logic_vector(g_num_fadc_boards-1 downto 0);
-  signal pmt_pwr_en     : std_logic_vector(g_num_fadc_boards-1 downto 0);
+  signal pps_out        : std_logic;
+
+  signal fadc_pwr_en    : std_logic_vector(5 downto 0);
+  signal pmt_pwr_en     : std_logic_vector(5 downto 0);
   signal dio_pwr_en     : std_logic;
   signal spwrt_pwr_en   : std_logic;
   signal sp3_pwr_en     : std_logic;
 
-  signal writing_and    : std_logic;
+  signal trig_in        : std_logic_vector(5 downto 0);
+  signal writing_in     : std_logic_vector(5 downto 0);
+  signal wd_in          : std_logic_vector(5 downto 0);
+  signal ud_in          : std_logic_vector(5 downto 0);
+  signal hit_in         : std_logic_vector(5 downto 0);
+
+  signal start_stop_in  : std_logic;
+  signal do_write_in    : std_logic;
+  signal pseudo_pps_in  : std_logic;
+  signal reset_veto_in  : std_logic;
+  signal onehit_en      : std_logic;
+
+  signal trig_or        : std_logic;
   signal writing_or     : std_logic;
-  signal ud_or          : std_logic;
+  signal writing_and    : std_logic;
   signal wd_or          : std_logic;
+  signal ud_or          : std_logic;
+
+  signal start_stop_out : std_logic_vector(5 downto 0);
+  signal do_write_out   : std_logic_vector(5 downto 0);
+  signal pseudo_pps_out : std_logic_vector(5 downto 0);
+  signal reset_veto_out : std_logic_vector(5 downto 0);
 
   -- TODO: Remove me!
   signal trig           : unsigned(3-1 downto 0);
@@ -156,7 +167,7 @@ architecture behav of minion is
 begin
 
   --===========================================================================
-  -- Data input from IUB
+  -- IUB control
   --===========================================================================
   -- Shift and data storage registers, controlled by signals from the IUB
   p_shift_reg : process(iub_clk_i)
@@ -174,45 +185,187 @@ begin
 
   -- Split IUB data into relevant fields
   temp_sel     <= data_from_iub( 3 downto  0);
-  fadc_pwr_en  <= data_from_iub( 4+(g_num_fadc_boards-1) downto  4);
+  fadc_pwr_en  <= data_from_iub( 9 downto  4);
   dio_pwr_en   <= data_from_iub(16);
   spwrt_pwr_en <= data_from_iub(17);
   sp3_pwr_en   <= data_from_iub(19);
-  pmt_pwr_en   <= data_from_iub(20+(g_num_fadc_boards-1) downto 20);
+  pmt_pwr_en   <= data_from_iub(25 downto 20);
 
-  --===========================================================================
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
-  --===========================================================================
   iub_temp_o <= temp_i(to_integer(unsigned(temp_sel)));
 
-  --===========================================================================
+  -- Backup connections to IUB
+  iub_bkp1_o <= '0';
+  iub_bkp2_o <= '0';
+  iub_bkp3_o <= '0';
+
   -- Forward PPS from IUB to DIO
+  pps_out <= iub_pps_i;
+
   --===========================================================================
-  pps_o <= iub_pps_i;
+  -- LVDS inputs to internal signal assignments
+  --===========================================================================
+  -- Inputs from FADCs
+  trig_in(0)    <= fadc1_i(0);
+  trig_in(1)    <= fadc2_i(0);
+  trig_in(2)    <= fadc3_i(0);
+  trig_in(3)    <= fadc4_i(0);
+  trig_in(4)    <= fadc5_i(0);
+  trig_in(5)    <= fadc6_i(0);
+
+  writing_in(0) <= fadc1_i(1);
+  writing_in(1) <= fadc2_i(1);
+  writing_in(2) <= fadc3_i(1);
+  writing_in(3) <= fadc4_i(1);
+  writing_in(4) <= fadc5_i(1);
+  writing_in(5) <= fadc6_i(1);
+
+  wd_in(0)      <= fadc1_i(2);
+  wd_in(1)      <= fadc2_i(2);
+  wd_in(2)      <= fadc3_i(2);
+  wd_in(3)      <= fadc4_i(2);
+  wd_in(4)      <= fadc5_i(2);
+  wd_in(5)      <= fadc6_i(2);
+
+  ud_in(0)      <= fadc1_i(3);
+  ud_in(1)      <= fadc2_i(3);
+  ud_in(2)      <= fadc3_i(3);
+  ud_in(3)      <= fadc4_i(3);
+  ud_in(4)      <= fadc5_i(3);
+  ud_in(5)      <= fadc6_i(3);
+
+  hit_in(0)     <= fadc1_i(4);
+  hit_in(1)     <= fadc2_i(4);
+  hit_in(2)     <= fadc3_i(4);
+  hit_in(3)     <= fadc4_i(4);
+  hit_in(4)     <= fadc5_i(4);
+  hit_in(5)     <= fadc6_i(4);
+
+  -- Inputs from DIO
+  start_stop_in <= dio_i(0);
+  do_write_in   <= dio_i(1);
+  pseudo_pps_in <= dio_i(2);
+  reset_veto_in <= dio_i(3);
+  onehit_en     <= dio_i(4);
 
   --===========================================================================
   -- One-hit veto implementation
   --===========================================================================
-  trig <= f_count_ones(trig_i);
-  hit  <= f_count_ones(hit_i);
+  trig <= f_count_ones(trig_in);
+  hit  <= f_count_ones(hit_in);
   sum  <= trig + hit;
 
   process (clk_i)
   begin
     if rising_edge(clk_i) then
-      trig_or_o <= '0';
-      if (onehit_en_i = '1') then
+      trig_or <= '0';
+      if (onehit_en = '1') then
         if (trig > 1) or (hit > 1) or (sum > 1) then
-          trig_or_o <= '1';
+          trig_or <= '1';
         end if;
       else
         if (trig /= (trig'range => '0')) then
-          trig_or_o <= '1';
+          trig_or <= '1';
         end if;
       end if;
     end if;
   end process;
+
+  --===========================================================================
+  -- FADC -> DIO outputs
+  --===========================================================================
+  -- FADCs writing
+  writing_and <= '1' when (writing_in  = (writing_in'range => '1')) else '0';
+  writing_or  <= '1' when (writing_in /= (writing_in'range => '0')) else '0';
+
+  -- Upper Discrimination (UD) & Waveform Discrimination (WD) veto signals
+  ud_or  <= '1' when (ud_in /= (ud_in'range => '0')) else '0';
+  wd_or  <= '1' when (wd_in /= (wd_in'range => '0')) else '0';
+
+  -- Assign the outputs
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      dio_o(0) <= trig_or;
+      dio_o(1) <= writing_and;
+      dio_o(2) <= writing_or;
+      dio_o(3) <= ud_or;
+      dio_o(4) <= wd_or;
+      dio_o(5) <= pps_out;
+      dio_o(6) <= '0';
+      dio_o(7) <= '0';
+    end if;
+  end process;
+
+  --===========================================================================
+  -- DIO -> FADC outputs
+  --===========================================================================
+  -- Fan-out to ports
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      do_write_out   <= (do_write_out'range   => do_write_in);
+      pseudo_pps_out <= (pseudo_pps_out'range => pseudo_pps_in);
+      start_stop_out <= (start_stop_out'range => start_stop_in);
+      reset_veto_out <= (reset_veto_out'range => reset_veto_in);
+    end if;
+  end process;
+
+  -- Port assignments
+  fadc1_o(0) <= start_stop_out(0);
+  fadc1_o(1) <= do_write_out(0);
+  fadc1_o(2) <= pseudo_pps_out(0);
+  fadc1_o(3) <= reset_veto_out(0);
+  fadc1_o(4) <= '0';
+  fadc1_o(5) <= '0';
+  fadc1_o(6) <= '0';
+  fadc1_o(7) <= '0';
+
+  fadc2_o(0) <= start_stop_out(1);
+  fadc2_o(1) <= do_write_out(1);
+  fadc2_o(2) <= pseudo_pps_out(1);
+  fadc2_o(3) <= reset_veto_out(1);
+  fadc2_o(4) <= '0';
+  fadc2_o(5) <= '0';
+  fadc2_o(6) <= '0';
+  fadc2_o(7) <= '0';
+
+  fadc3_o(0) <= start_stop_out(2);
+  fadc3_o(1) <= do_write_out(2);
+  fadc3_o(2) <= pseudo_pps_out(2);
+  fadc3_o(3) <= reset_veto_out(2);
+  fadc3_o(4) <= '0';
+  fadc3_o(5) <= '0';
+  fadc3_o(6) <= '0';
+  fadc3_o(7) <= '0';
+
+  fadc4_o(0) <= start_stop_out(3);
+  fadc4_o(1) <= do_write_out(3);
+  fadc4_o(2) <= pseudo_pps_out(3);
+  fadc4_o(3) <= reset_veto_out(3);
+  fadc4_o(4) <= '0';
+  fadc4_o(5) <= '0';
+  fadc4_o(6) <= '0';
+  fadc4_o(7) <= '0';
+
+  fadc5_o(0) <= start_stop_out(4);
+  fadc5_o(1) <= do_write_out(4);
+  fadc5_o(2) <= pseudo_pps_out(4);
+  fadc5_o(3) <= reset_veto_out(4);
+  fadc5_o(4) <= '0';
+  fadc5_o(5) <= '0';
+  fadc5_o(6) <= '0';
+  fadc5_o(7) <= '0';
+
+  fadc6_o(0) <= start_stop_out(5);
+  fadc6_o(1) <= do_write_out(5);
+  fadc6_o(2) <= pseudo_pps_out(5);
+  fadc6_o(3) <= reset_veto_out(5);
+  fadc6_o(4) <= '0';
+  fadc6_o(5) <= '0';
+  fadc6_o(6) <= '0';
+  fadc6_o(7) <= '0';
 
   --===========================================================================
   -- Power enable outputs assignment
@@ -225,41 +378,6 @@ begin
       dio_pwr_en_o   <= dio_pwr_en;
       spwrt_pwr_en_o <= spwrt_pwr_en;
       sp3_pwr_en_o   <= sp3_pwr_en;
-    end if;
-  end process;
-
-  --===========================================================================
-  -- FADC -> DIO outputs
-  --===========================================================================
-  -- FADCs writing
-  writing_and <= '1' when (writing_i  = (writing_i'range => '1')) else '0';
-  writing_or  <= '1' when (writing_i /= (writing_i'range => '0')) else '0';
-
-  -- Upper Discrimination (UD) & Waveform Discrimination (WD) veto signals
-  ud_or  <= '1' when (ud_i /= (ud_i'range => '0')) else '0';
-  wd_or  <= '1' when (wd_i /= (wd_i'range => '0')) else '0';
-
-  -- Assign the outputs
-  process (clk_i)
-  begin
-    if rising_edge(clk_i) then
-      writing_and_o <= writing_and;
-      writing_or_o  <= writing_or;
-      ud_or_o       <= ud_or;
-      wd_or_o       <= wd_or;
-    end if;
-  end process;
-
-  --===========================================================================
-  -- DIO -> FADC outputs
-  --===========================================================================
-  process (clk_i)
-  begin
-    if rising_edge(clk_i) then
-      do_write_o   <= (do_write_o'range   => do_write_i);
-      pseudo_pps_o <= (pseudo_pps_o'range => pseudo_pps_i);
-      start_stop_o <= (start_stop_o'range => start_stop_i);
-      reset_veto_o <= (reset_veto_o'range => reset_veto_i);
     end if;
   end process;
 

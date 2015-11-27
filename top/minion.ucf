@@ -34,283 +34,359 @@ NET "clk_i"                 LOC = "P44";
 
 #------------------------------------------------------------------------------
 # FADC 1 -> DIO
-#------------------------------------------------------------------------------
-NET "trig_i[0]"             LOC = "P158";   # fadc1_in[0]
-NET "writing_i[0]"          LOC = "P159";   # fadc1_in[1]
-NET "wd_i[0]"               LOC = "P160";   # fadc1_in[2]
-NET "ud_i[0]"               LOC = "P161";   # fadc1_in[3]
-NET "hit_i[0]"              LOC = "P162";   # fadc1_in[4]
-# NET ""                    LOC = "P163";   # fadc1_in[5]
-# NET ""                    LOC = "P164";   # fadc1_in[6]
-# NET ""                    LOC = "P165";   # fadc1_in[7]
+#-----------------------------------------------------------------------------
+NET "fadc1_i[0]"        LOC = "P139";
+NET "fadc1_i[1]"        LOC = "P140";
+NET "fadc1_i[2]"        LOC = "P142";
+NET "fadc1_i[3]"        LOC = "P143";
+NET "fadc1_i[4]"        LOC = "P144";
+NET "fadc1_i[5]"        LOC = "P145";
+NET "fadc1_i[6]"        LOC = "P146";
+NET "fadc1_i[7]"        LOC = "P147";
 
-NET "start_stop_o[0]"       LOC = "P148";   # fadc1_out[0]
-NET "do_write_o[0]"         LOC = "P149";   # fadc1_out[1]
-NET "pseudo_pps_o[0]"       LOC = "P150";   # fadc1_out[2]
-NET "reset_veto_o[0]"       LOC = "P151";   # fadc1_out[3]
-# NET ""                    LOC = "P152";   # fadc1_out[4]
-# NET ""                    LOC = "P153";   # fadc1_out[5]
-# NET ""                    LOC = "P154";   # fadc1_out[6]
-# NET ""                    LOC = "P155";   # fadc1_out[7]
+NET "fadc1_o[0]"        LOC = "P127";
+NET "fadc1_o[1]"        LOC = "P128";
+NET "fadc1_o[2]"        LOC = "P131";
+NET "fadc1_o[3]"        LOC = "P134";
+NET "fadc1_o[4]"        LOC = "P135";
+NET "fadc1_o[5]"        LOC = "P136";
+NET "fadc1_o[6]"        LOC = "P137";
+NET "fadc1_o[7]"        LOC = "P138";
 
 #------------------------------------------------------------------------------
 # FADC 2 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[1]"             LOC = "P175";   # fadc2_in[0]
-NET "writing_i[1]"          LOC = "P178";   # fadc2_in[1]
-NET "wd_i[1]"               LOC = "P179";   # fadc2_in[2]
-NET "ud_i[1]"               LOC = "P180";   # fadc2_in[3]
-NET "hit_i[1]"              LOC = "P182";   # fadc2_in[4]
-# NET ""                    LOC = "P183";   # fadc2_in[5]
-# NET ""                    LOC = "P184";   # fadc2_in[6]
-# NET ""                    LOC = "P185";   # fadc2_in[7]
+NET "fadc2_i[0]"        LOC = "P175";
+NET "fadc2_i[1]"        LOC = "P178";
+NET "fadc2_i[2]"        LOC = "P179";
+NET "fadc2_i[3]"        LOC = "P180";
+NET "fadc2_i[4]"        LOC = "P182";
+NET "fadc2_i[5]"        LOC = "P183";
+NET "fadc2_i[6]"        LOC = "P184";
+NET "fadc2_i[7]"        LOC = "P185";
 
-NET "start_stop_o[1]"       LOC = "P166";   # fadc2_out[0]
-NET "do_write_o[1]"         LOC = "P167";   # fadc2_out[1]
-NET "pseudo_pps_o[1]"       LOC = "P168";   # fadc2_out[2]
-NET "reset_veto_o[1]"       LOC = "P169";   # fadc2_out[3]
-# NET ""                    LOC = "P170";   # fadc2_out[4]
-# NET ""                    LOC = "P171";   # fadc2_out[5]
-# NET ""                    LOC = "P173";   # fadc2_out[6]
-# NET ""                    LOC = "P174";   # fadc2_out[7]
+NET "fadc2_o[0]"        LOC = "P166";
+NET "fadc2_o[1]"        LOC = "P167";
+NET "fadc2_o[2]"        LOC = "P168";
+NET "fadc2_o[3]"        LOC = "P169";
+NET "fadc2_o[4]"        LOC = "P170";
+NET "fadc2_o[5]"        LOC = "P171";
+NET "fadc2_o[6]"        LOC = "P173";
+NET "fadc2_o[7]"        LOC = "P174";
 
 #------------------------------------------------------------------------------
 # FADC 3 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[2]"             LOC = "P139";   # fadc3_in[0]
-NET "writing_i[2]"          LOC = "P140";   # fadc3_in[1]
-NET "wd_i[2]"               LOC = "P142";   # fadc3_in[2]
-NET "ud_i[2]"               LOC = "P143";   # fadc3_in[3]
-NET "hit_i[2]"              LOC = "P144";   # fadc3_in[4]
-# NET ""                    LOC = "P145";   # fadc3_in[5]
-# NET ""                    LOC = "P146";   # fadc3_in[6]
-# NET ""                    LOC = "P147";   # fadc3_in[7]
+NET "fadc3_i[0]"        LOC = "P158";
+NET "fadc3_i[1]"        LOC = "P159";
+NET "fadc3_i[2]"        LOC = "P160";
+NET "fadc3_i[3]"        LOC = "P161";
+NET "fadc3_i[4]"        LOC = "P162";
+NET "fadc3_i[5]"        LOC = "P163";
+NET "fadc3_i[6]"        LOC = "P164";
+NET "fadc3_i[7]"        LOC = "P165";
 
-NET "start_stop_o[2]"       LOC = "P127";   # fadc3_out[0]
-NET "do_write_o[2]"         LOC = "P128";   # fadc3_out[1]
-NET "pseudo_pps_o[2]"       LOC = "P131";   # fadc3_out[2]
-NET "reset_veto_o[2]"       LOC = "P134";   # fadc3_out[3]
-# NET ""                    LOC = "P135";   # fadc3_out[4]
-# NET ""                    LOC = "P136";   # fadc3_out[5]
-# NET ""                    LOC = "P137";   # fadc3_out[6]
-# NET ""                    LOC = "P138";   # fadc3_out[7]
+NET "fadc3_o[0]"        LOC = "P148";
+NET "fadc3_o[1]"        LOC = "P149";
+NET "fadc3_o[2]"        LOC = "P150";
+NET "fadc3_o[3]"        LOC = "P151";
+NET "fadc3_o[4]"        LOC = "P152";
+NET "fadc3_o[5]"        LOC = "P153";
+NET "fadc3_o[6]"        LOC = "P154";
+NET "fadc3_o[7]"        LOC = "P155";
 
 #------------------------------------------------------------------------------
 # FADC 4 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[3]"             LOC = "P51";    # fadc4_in[0]
-NET "writing_i[3]"          LOC = "P50";    # fadc4_in[1]
-NET "wd_i[3]"               LOC = "P49";    # fadc4_in[2]
-NET "ud_i[3]"               LOC = "P48";    # fadc4_in[3]
-NET "hit_i[3]"              LOC = "P47";    # fadc4_in[4]
-# NET ""                    LOC = "P46";    # fadc4_in[5]
-# NET ""                    LOC = "P45";    # fadc4_in[6]
-# NET ""                    LOC = "P43";    # fadc4_in[7]
+NET "fadc4_i[0]"        LOC = "P51";
+NET "fadc4_i[1]"        LOC = "P50";
+NET "fadc4_i[2]"        LOC = "P49";
+NET "fadc4_i[3]"        LOC = "P48";
+NET "fadc4_i[4]"        LOC = "P47";
+NET "fadc4_i[5]"        LOC = "P46";
+NET "fadc4_i[6]"        LOC = "P45";
+NET "fadc4_i[7]"        LOC = "P43";
 
-NET "start_stop_o[3]"       LOC = "P63";    # fadc4_out[0]
-NET "do_write_o[3]"         LOC = "P62";    # fadc4_out[1]
-NET "pseudo_pps_o[3]"       LOC = "P61";    # fadc4_out[2]
-NET "reset_veto_o[3]"       LOC = "P60";    # fadc4_out[3]
-# NET ""                    LOC = "P58";    # fadc4_out[4]
-# NET ""                    LOC = "P57";    # fadc4_out[5]
-# NET ""                    LOC = "P56";    # fadc4_out[6]
-# NET ""                    LOC = "P54";    # fadc4_out[7]
+NET "fadc4_o[0]"        LOC = "P63";
+NET "fadc4_o[1]"        LOC = "P62";
+NET "fadc4_o[2]"        LOC = "P61";
+NET "fadc4_o[3]"        LOC = "P60";
+NET "fadc4_o[4]"        LOC = "P58";
+NET "fadc4_o[5]"        LOC = "P57";
+NET "fadc4_o[6]"        LOC = "P56";
+NET "fadc4_o[7]"        LOC = "P54";
 
 #------------------------------------------------------------------------------
 # FADC 5 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[4]"             LOC = "P32";    # fadc5_in[0]
-NET "writing_i[4]"          LOC = "P31";    # fadc5_in[1]
-NET "wd_i[4]"               LOC = "P30";    # fadc5_in[2]
-NET "ud_i[4]"               LOC = "P29";    # fadc5_in[3]
-NET "hit_i[4]"              LOC = "P28";    # fadc5_in[4]
-# NET ""                    LOC = "P27";    # fadc5_in[5]
-# NET ""                    LOC = "P25";    # fadc5_in[6]
-# NET ""                    LOC = "P23";    # fadc5_in[7]
+NET "fadc5_i[0]"        LOC = "P32";
+NET "fadc5_i[1]"        LOC = "P31";
+NET "fadc5_i[2]"        LOC = "P30";
+NET "fadc5_i[3]"        LOC = "P29";
+NET "fadc5_i[4]"        LOC = "P28";
+NET "fadc5_i[5]"        LOC = "P27";
+NET "fadc5_i[6]"        LOC = "P25";
+NET "fadc5_i[7]"        LOC = "P23";
 
-NET "start_stop_o[4]"       LOC = "P41";    # fadc5_out[0]
-NET "do_write_o[4]"         LOC = "P40";    # fadc5_out[1]
-NET "pseudo_pps_o[4]"       LOC = "P39";    # fadc5_out[2]
-NET "reset_veto_o[4]"       LOC = "P38";    # fadc5_out[3]
-# NET ""                    LOC = "P37";    # fadc5_out[4]
-# NET ""                    LOC = "P36";    # fadc5_out[5]
-# NET ""                    LOC = "P35";    # fadc5_out[6]
-# NET ""                    LOC = "P34";    # fadc5_out[7]
+NET "fadc5_o[0]"        LOC = "P41";
+NET "fadc5_o[1]"        LOC = "P40";
+NET "fadc5_o[2]"        LOC = "P39";
+NET "fadc5_o[3]"        LOC = "P38";
+NET "fadc5_o[4]"        LOC = "P37";
+NET "fadc5_o[5]"        LOC = "P36";
+NET "fadc5_o[6]"        LOC = "P35";
+NET "fadc5_o[7]"        LOC = "P34";
 
 #------------------------------------------------------------------------------
 # FADC 6 -> DIO
 #------------------------------------------------------------------------------
-NET "trig_i[5]"             LOC = "P72";    # fadc6_in[0]
-NET "writing_i[5]"          LOC = "P71";    # fadc6_in[1]
-NET "wd_i[5]"               LOC = "P70";    # fadc6_in[2]
-NET "ud_i[5]"               LOC = "P69";    # fadc6_in[3]
-NET "hit_i[5]"              LOC = "P67";    # fadc6_in[4]
-# NET ""                    LOC = "P66";    # fadc6_in[5]
-# NET ""                    LOC = "P65";    # fadc6_in[6]
-# NET ""                    LOC = "P64";    # fadc6_in[7]
+NET "fadc6_i[0]"        LOC = "P72";
+NET "fadc6_i[1]"        LOC = "P71";
+NET "fadc6_i[2]"        LOC = "P70";
+NET "fadc6_i[3]"        LOC = "P69";
+NET "fadc6_i[4]"        LOC = "P67";
+NET "fadc6_i[5]"        LOC = "P66";
+NET "fadc6_i[6]"        LOC = "P65";
+NET "fadc6_i[7]"        LOC = "P64";
 
-NET "start_stop_o[5]"       LOC = "P82";    # fadc6_out[0]
-NET "do_write_o[5]"         LOC = "P80";    # fadc6_out[1]
-NET "pseudo_pps_o[5]"       LOC = "P78";    # fadc6_out[2]
-NET "reset_veto_o[5]"       LOC = "P77";    # fadc6_out[3]
-# NET ""                    LOC = "P76";    # fadc6_out[4]
-# NET ""                    LOC = "P75";    # fadc6_out[5]
-# NET ""                    LOC = "P74";    # fadc6_out[6]
-# NET ""                    LOC = "P73";    # fadc6_out[7]
+NET "fadc6_o[0]"        LOC = "P82";
+NET "fadc6_o[1]"        LOC = "P80";
+NET "fadc6_o[2]"        LOC = "P78";
+NET "fadc6_o[3]"        LOC = "P77";
+NET "fadc6_o[4]"        LOC = "P76";
+NET "fadc6_o[5]"        LOC = "P75";
+NET "fadc6_o[6]"        LOC = "P74";
+NET "fadc6_o[7]"        LOC = "P73";
 
-#-----------------------76.5-------------------------------------------------------
+#------------------------------------------------------------------------------
 # DIO -> FADCs
 #------------------------------------------------------------------------------
-NET "start_stop_i"          LOC = "P90";    # dio_in[0]
-NET "do_write_i"            LOC = "P89";    # dio_in[1]
-NET "pseudo_pps_i"          LOC = "P88";    # dio_in[2]
-NET "reset_veto_i"          LOC = "P87";    # dio_in[3]
-NET "onehit_en_i"           LOC = "P22";    # dio_in[4]
-# NET ""                    LOC = "P21";    # dio_in[5]
-# NET ""                    LOC = "P20";    # dio_in[6]
-# NET ""                    LOC = "P19";    # dio_in[7]
+NET "dio_i[0]"          LOC = "P90";
+NET "dio_i[1]"          LOC = "P89";
+NET "dio_i[2]"          LOC = "P88";
+NET "dio_i[3]"          LOC = "P87";
+NET "dio_i[4]"          LOC = "P22";
+NET "dio_i[5]"          LOC = "P21";
+NET "dio_i[6]"          LOC = "P20";
+NET "dio_i[7]"          LOC = "P19";
 
-NET "trig_or_o"             LOC = "P86";    # dio_out[0]
-NET "writing_or_o"          LOC = "P85";    # dio_out[1]
-NET "writing_and_o"         LOC = "P84";    # dio_out[2]
-NET "ud_or_o"               LOC = "P83";    # dio_out[3]
-NET "wd_or_o"               LOC = "P18";    # dio_out[4]
-NET "pps_o"                 LOC = "P17";    # dio_out[5]
-# NET ""                    LOC = "P16";    # dio_out[6]
-# NET ""                    LOC = "P15";    # dio_out[7]
+NET "dio_o[0]"          LOC = "P86";
+NET "dio_o[1]"          LOC = "P85";
+NET "dio_o[2]"          LOC = "P84";
+NET "dio_o[3]"          LOC = "P83";
+NET "dio_o[4]"          LOC = "P18";
+NET "dio_o[5]"          LOC = "P17";
+NET "dio_o[6]"          LOC = "P16";
+NET "dio_o[7]"          LOC = "P15";
 
 #==============================================================================
 # IUB and temperature sensors
 #==============================================================================
 
-NET "iub_clk_i"             LOC = "P55";
-NET "iub_read_i"            LOC = "P101";
-NET "iub_data_i"            LOC = "P100";
+NET "iub_clk_i"         LOC = "P55";
+NET "iub_read_i"        LOC = "P100";
+NET "iub_data_i"        LOC = "P99";
 
-NET "temp_i[0]"             LOC = "P110";
-NET "temp_i[1]"             LOC = "P111";
-NET "temp_i[2]"             LOC = "P112";
-NET "temp_i[3]"             LOC = "P113";
-NET "temp_i[4]"             LOC = "P114";
-NET "temp_i[5]"             LOC = "P115";
-NET "temp_i[6]"             LOC = "P116";
-NET "temp_i[7]"             LOC = "P117";
-NET "temp_i[8]"             LOC = "P118";
-NET "temp_i[9]"             LOC = "P119";
-NET "temp_i[10]"            LOC = "P120";
-NET "temp_i[11]"            LOC = "P121";
-NET "temp_i[12]"            LOC = "P122";
-NET "temp_i[13]"            LOC = "P123";
-NET "temp_i[14]"            LOC = "P125";
-NET "temp_i[15]"            LOC = "P126";
+NET "temp_i[0]"         LOC = "P109";
+NET "temp_i[1]"         LOC = "P110";
+NET "temp_i[2]"         LOC = "P111";
+NET "temp_i[3]"         LOC = "P112";
+NET "temp_i[4]"         LOC = "P113";
+NET "temp_i[5]"         LOC = "P114";
+NET "temp_i[6]"         LOC = "P115";
+NET "temp_i[7]"         LOC = "P116";
+NET "temp_i[8]"         LOC = "P117";
+NET "temp_i[9]"         LOC = "P118";
+NET "temp_i[10]"        LOC = "P119";
+NET "temp_i[11]"        LOC = "P120";
+NET "temp_i[12]"        LOC = "P121";
+NET "temp_i[13]"        LOC = "P122";
+NET "temp_i[14]"        LOC = "P125";
+NET "temp_i[15]"        LOC = "P126";
 
-NET "iub_temp_o"            LOC = "P97";
+NET "iub_temp_o"        LOC = "P106";
+NET "iub_bkp1_o"        LOC = "P103";
+NET "iub_bkp2_o"        LOC = "P107";
+NET "iub_bkp3_o"        LOC = "P108";
 
-NET "iub_pps_i"             LOC = "P102";
+NET "iub_pps_i"         LOC = "P101";
 
 #==============================================================================
 # Power board
 #==============================================================================
 
-NET "fadc_pwr_en_o[0]"      LOC = "P189";
-NET "fadc_pwr_en_o[1]"      LOC = "P191";
-NET "fadc_pwr_en_o[2]"      LOC = "P192";
-NET "fadc_pwr_en_o[3]"      LOC = "P193";
-NET "fadc_pwr_en_o[4]"      LOC = "P194";
-NET "fadc_pwr_en_o[5]"      LOC = "P195";
+NET "fadc_pwr_en_o[0]"  LOC = "P189";
+NET "fadc_pwr_en_o[1]"  LOC = "P191";
+NET "fadc_pwr_en_o[2]"  LOC = "P192";
+NET "fadc_pwr_en_o[3]"  LOC = "P193";
+NET "fadc_pwr_en_o[4]"  LOC = "P194";
+NET "fadc_pwr_en_o[5]"  LOC = "P195";
 
-NET "dio_pwr_en_o"          LOC = "P196";
-NET "spwrt_pwr_en_o"        LOC = "P197";
-NET "sp3_pwr_en_o"          LOC = "P198";
+NET "dio_pwr_en_o"      LOC = "P196";
+NET "spwrt_pwr_en_o"    LOC = "P197";
+NET "sp3_pwr_en_o"      LOC = "P198";
 
-NET "pmt_pwr_en_o[0]"       LOC = "P199";
-NET "pmt_pwr_en_o[1]"       LOC = "P200";
-NET "pmt_pwr_en_o[2]"       LOC = "P201";
-NET "pmt_pwr_en_o[3]"       LOC = "P202";
-NET "pmt_pwr_en_o[4]"       LOC = "P203";
-NET "pmt_pwr_en_o[5]"       LOC = "P205";
+NET "pmt_pwr_en_o[0]"   LOC = "P199";
+NET "pmt_pwr_en_o[1]"   LOC = "P200";
+NET "pmt_pwr_en_o[2]"   LOC = "P201";
+NET "pmt_pwr_en_o[3]"   LOC = "P202";
+NET "pmt_pwr_en_o[4]"   LOC = "P203";
+NET "pmt_pwr_en_o[5]"   LOC = "P205";
 
 #==============================================================================
 # IO STANDARDS
 #==============================================================================
-NET "clk_i"                IOSTANDARD = LVCMOS33;
-NET "trig_i[0]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[0]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[0]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[0]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[0]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[0]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[0]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[0]"      IOSTANDARD = LVCMOS33;
-NET "trig_i[1]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[1]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[1]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[1]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[1]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[1]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[1]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[1]"      IOSTANDARD = LVCMOS33;
-NET "trig_i[2]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[2]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[2]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[2]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[2]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[2]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[2]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[2]"      IOSTANDARD = LVCMOS33;
-NET "trig_i[3]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[3]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[3]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[3]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[3]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[3]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[3]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[3]"      IOSTANDARD = LVCMOS33;
-NET "trig_i[4]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[4]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[4]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[4]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[4]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[4]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[4]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[4]"      IOSTANDARD = LVCMOS33;
-NET "trig_i[5]"            IOSTANDARD = LVCMOS33;
-NET "writing_i[5]"         IOSTANDARD = LVCMOS33;
-NET "wd_i[5]"              IOSTANDARD = LVCMOS33;
-NET "ud_i[5]"              IOSTANDARD = LVCMOS33;
-NET "hit_i[5]"             IOSTANDARD = LVCMOS33;
-NET "start_stop_o[5]"      IOSTANDARD = LVCMOS33;
-NET "do_write_o[5]"        IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_o[5]"      IOSTANDARD = LVCMOS33;
-NET "start_stop_i"         IOSTANDARD = LVCMOS33;
-NET "do_write_i"           IOSTANDARD = LVCMOS33;
-NET "pseudo_pps_i"         IOSTANDARD = LVCMOS33;
-NET "reset_veto_i"         IOSTANDARD = LVCMOS33;
-NET "onehit_en_i"          IOSTANDARD = LVCMOS33;
-NET "trig_or_o"            IOSTANDARD = LVCMOS33;
-NET "writing_or_o"         IOSTANDARD = LVCMOS33;
-NET "writing_and_o"        IOSTANDARD = LVCMOS33;
-NET "ud_or_o"              IOSTANDARD = LVCMOS33;
-NET "wd_or_o"              IOSTANDARD = LVCMOS33;
-NET "pps_o"                IOSTANDARD = LVCMOS33;
-NET "iub_clk_i"            IOSTANDARD = LVCMOS33;
-NET "iub_read_i"           IOSTANDARD = LVCMOS33;
-NET "iub_data_i"           IOSTANDARD = LVCMOS33;
-NET "iub_pps_i"            IOSTANDARD = LVCMOS33;
-NET "iub_temp_o"           IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[0]"     IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[1]"     IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[2]"     IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[3]"     IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[4]"     IOSTANDARD = LVCMOS33;
-NET "fadc_pwr_en_o[5]"     IOSTANDARD = LVCMOS33;
-NET "dio_pwr_en_o"         IOSTANDARD = LVCMOS33;
-NET "spwrt_pwr_en_o"       IOSTANDARD = LVCMOS33;
-NET "sp3_pwr_en_o"         IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[0]"      IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[1]"      IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[2]"      IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[3]"      IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[4]"      IOSTANDARD = LVCMOS33; 
-NET "pmt_pwr_en_o[5]"      IOSTANDARD = LVCMOS33; 
+NET "clk_i"             IOSTANDARD = LVCMOS33;
+
+NET "fadc1_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc1_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc1_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc2_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc2_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc2_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc3_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc3_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc3_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc4_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc4_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc4_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc5_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc5_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc5_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc6_i[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_i[7]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc6_o[0]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[1]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[2]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[3]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[4]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[5]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[6]"        IOSTANDARD = LVCMOS33;
+NET "fadc6_o[7]"        IOSTANDARD = LVCMOS33;
+
+NET "iub_clk_i"         IOSTANDARD = LVCMOS33;
+NET "iub_read_i"        IOSTANDARD = LVCMOS33;
+NET "iub_data_i"        IOSTANDARD = LVCMOS33;
+NET "iub_pps_i"         IOSTANDARD = LVCMOS33;
+NET "iub_temp_o"        IOSTANDARD = LVCMOS33;
+NET "iub_bkp1_o"        IOSTANDARD = LVCMOS33;
+NET "iub_bkp2_o"        IOSTANDARD = LVCMOS33;
+NET "iub_bkp3_o"        IOSTANDARD = LVCMOS33;
+
+NET "temp_i[0]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[1]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[2]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[3]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[4]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[5]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[6]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[7]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[8]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[9]"         IOSTANDARD = LVCMOS33;
+NET "temp_i[10]"        IOSTANDARD = LVCMOS33;
+NET "temp_i[11]"        IOSTANDARD = LVCMOS33;
+NET "temp_i[12]"        IOSTANDARD = LVCMOS33;
+NET "temp_i[13]"        IOSTANDARD = LVCMOS33;
+NET "temp_i[14]"        IOSTANDARD = LVCMOS33;
+NET "temp_i[15]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc_pwr_en_o[0]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[1]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[2]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[3]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[4]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[5]"  IOSTANDARD = LVCMOS33;
+
+NET "dio_pwr_en_o"      IOSTANDARD = LVCMOS33;
+NET "spwrt_pwr_en_o"    IOSTANDARD = LVCMOS33;
+NET "sp3_pwr_en_o"      IOSTANDARD = LVCMOS33;
+
+NET "pmt_pwr_en_o[0]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[1]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[2]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[3]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[4]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[5]"   IOSTANDARD = LVCMOS33;
 
