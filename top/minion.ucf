@@ -215,16 +215,16 @@ NET "iub_pps_i"         LOC = "P101";
 # Power board
 #==============================================================================
 
-NET "fadc_pwr_en_o[0]"  LOC = "P189";
-NET "fadc_pwr_en_o[1]"  LOC = "P191";
-NET "fadc_pwr_en_o[2]"  LOC = "P192";
-NET "fadc_pwr_en_o[3]"  LOC = "P193";
-NET "fadc_pwr_en_o[4]"  LOC = "P194";
-NET "fadc_pwr_en_o[5]"  LOC = "P195";
+NET "fadc_pwr_en_o[0]"  LOC = "P197";
+NET "fadc_pwr_en_o[1]"  LOC = "P196";
+NET "fadc_pwr_en_o[2]"  LOC = "P195";
+NET "fadc_pwr_en_o[3]"  LOC = "P194";
+NET "fadc_pwr_en_o[4]"  LOC = "P193";
+NET "fadc_pwr_en_o[5]"  LOC = "P192";
 
-NET "dio_pwr_en_o"      LOC = "P196";
-NET "spwrt_pwr_en_o"    LOC = "P197";
-NET "sp3_pwr_en_o"      LOC = "P198";
+NET "dio_pwr_en_o"      LOC = "P198";
+NET "spwrt_pwr_en_o"    LOC = "P191";
+NET "sp3_pwr_en_o"      LOC = "P189";
 
 NET "pmt_pwr_en_o[0]"   LOC = "P199";
 NET "pmt_pwr_en_o[1]"   LOC = "P200";
