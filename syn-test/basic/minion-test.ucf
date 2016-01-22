@@ -1,0 +1,10 @@
+NET "clk_i" TNM_NET = "clk_i";
+TIMESPEC "TSCLK" = PERIOD "clk_i" 50 ns;
+
+NET "clk_i" LOC = "P44";
+NET "clk_i" IOSTANDARD = LVCMOS33;
+NET "div_o" LOC = "P205";
+NET "div_o" IOSTANDARD = LVCMOS33;
+NET "dc_o"  LOC = "P198";
+NET "dc_o"  IOSTANDARD = LVCMOS33;
+

@@ -1,0 +1,92 @@
+NET "dip_n_i[0]" LOC = D14;
+NET "dip_n_i[1]" LOC = C14;
+NET "dip_n_i[2]" LOC = D15;
+NET "dip_n_i[3]" LOC = C16;
+NET "dip_n_i[4]" LOC = E16;
+NET "dip_n_i[5]" LOC = D17;
+NET "dip_n_i[6]" LOC = C17;
+NET "dip_n_i[7]" LOC = B18;
+
+NET "led_in_n_o[0]" LOC = K17;
+NET "led_in_n_o[1]" LOC = J17;
+NET "led_in_n_o[2]" LOC = E22;
+NET "led_in_n_o[3]" LOC = E20;
+NET "led_in_n_o[4]" LOC = H18;
+NET "led_in_n_o[5]" LOC = H19;
+NET "led_in_n_o[6]" LOC = F20;
+NET "led_in_n_o[7]" LOC = G19;
+
+NET "led_out_n_o[0]" LOC = F19;
+NET "led_out_n_o[1]" LOC = F18;
+NET "led_out_n_o[2]" LOC = D20;
+NET "led_out_n_o[3]" LOC = D19;
+NET "led_out_n_o[4]" LOC = A20;
+NET "led_out_n_o[5]" LOC = A21;
+NET "led_out_n_o[6]" LOC = B21;
+NET "led_out_n_o[7]" LOC = B22;
+
+NET "lvds_i[0]" LOC = F21;
+NET "lvds_i[1]" LOC = F22;
+NET "lvds_i[2]" LOC = G20;
+NET "lvds_i[3]" LOC = G22;
+NET "lvds_i[4]" LOC = H21;
+NET "lvds_i[5]" LOC = H22;
+NET "lvds_i[6]" LOC = J20;
+NET "lvds_i[7]" LOC = J22;
+
+NET "lvds_o[0]" LOC = K21;
+NET "lvds_o[1]" LOC = K22;
+NET "lvds_o[2]" LOC = L20;
+NET "lvds_o[3]" LOC = L22;
+NET "lvds_o[4]" LOC = M21;
+NET "lvds_o[5]" LOC = M22;
+NET "lvds_o[6]" LOC = N20;
+NET "lvds_o[7]" LOC = N22;
+
+#========================================
+
+NET "dip_n_i[0]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[1]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[2]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[3]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[4]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[5]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[6]" IOSTANDARD = LVCMOS33;
+NET "dip_n_i[7]" IOSTANDARD = LVCMOS33;
+
+NET "led_in_n_o[0]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[1]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[2]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[3]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[4]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[5]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[6]" IOSTANDARD = LVCMOS33;
+NET "led_in_n_o[7]" IOSTANDARD = LVCMOS33;
+
+NET "led_out_n_o[0]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[1]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[2]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[3]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[4]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[5]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[6]" IOSTANDARD = LVCMOS33;
+NET "led_out_n_o[7]" IOSTANDARD = LVCMOS33;
+
+NET "lvds_i[0]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[1]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[2]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[3]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[4]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[5]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[6]" IOSTANDARD = LVCMOS33;
+NET "lvds_i[7]" IOSTANDARD = LVCMOS33;
+
+NET "lvds_o[0]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[1]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[2]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[3]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[4]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[5]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[6]" IOSTANDARD = LVCMOS33;
+NET "lvds_o[7]" IOSTANDARD = LVCMOS33;
+
