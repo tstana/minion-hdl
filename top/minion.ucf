@@ -346,6 +346,24 @@ NET "fadc6_o[5]"        IOSTANDARD = LVCMOS33;
 NET "fadc6_o[6]"        IOSTANDARD = LVCMOS33;
 NET "fadc6_o[7]"        IOSTANDARD = LVCMOS33;
 
+NET "dio_i[0]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[1]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[2]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[3]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[4]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[5]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[6]"          IOSTANDARD = LVCMOS33;
+NET "dio_i[7]"          IOSTANDARD = LVCMOS33;
+
+NET "dio_o[0]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[1]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[2]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[3]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[4]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[5]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[6]"          IOSTANDARD = LVCMOS33;
+NET "dio_o[7]"          IOSTANDARD = LVCMOS33;
+
 NET "iub_clk_i"         IOSTANDARD = LVCMOS33;
 NET "iub_read_i"        IOSTANDARD = LVCMOS33;
 NET "iub_data_i"        IOSTANDARD = LVCMOS33;
