@@ -1,0 +1,266 @@
+#==============================================================================
+# KTH Royal Institute of Technology Stockholm
+# UCF definitions file for the PoGO+ minion board gateware
+#==============================================================================
+#
+# author: Theodor Stana (stana@kth.se)
+#
+# description:
+#
+#==============================================================================
+# GNU LESSER GENERAL PUBLIC LICENSE
+#==============================================================================
+# This source file is free software; you can redistribute it and/or modify it
+# under the terms of the GNU Lesser General Public License as published by the
+# Free Software Foundation; either version 2.1 of the License, or (at your
+# option) any later version. This source is distributed in the hope that it
+# will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU Lesser General Public License for more details. You should have
+# received a copy of the GNU Lesser General Public License along with this
+# source; if not, download it from http://www.gnu.org/licenses/lgpl-2.1.html
+#==============================================================================
+# TODO: -
+#==============================================================================
+
+#==============================================================================
+# Clocks and resets
+#==============================================================================
+NET "clk_i"                 LOC = "P44";
+
+#==============================================================================
+# IUB and temperature sensors
+#==============================================================================
+
+NET "iub_shift_i"       LOC = "P55";
+NET "iub_read_i"        LOC = "P100";
+NET "iub_data_i"        LOC = "P99";
+NET "iub_data_dbg_o"    LOC = "P109";
+NET "iub_shift_dbg_o"   LOC = "P110";
+NET "iub_read_dbg_o"    LOC = "P111";
+
+# NET "temp_i[0]"         LOC = "P109";
+# NET "temp_i[1]"         LOC = "P110";
+# NET "temp_i[2]"         LOC = "P111";
+# NET "temp_i[3]"         LOC = "P112";
+# NET "temp_i[4]"         LOC = "P113";
+# NET "temp_i[5]"         LOC = "P114";
+# NET "temp_i[6]"         LOC = "P115";
+# NET "temp_i[7]"         LOC = "P116";
+# NET "temp_i[8]"         LOC = "P117";
+# NET "temp_i[9]"         LOC = "P118";
+# NET "temp_i[10]"        LOC = "P119";
+# NET "temp_i[11]"        LOC = "P120";
+# NET "temp_i[12]"        LOC = "P121";
+# NET "temp_i[13]"        LOC = "P122";
+# NET "temp_i[14]"        LOC = "P125";
+# NET "temp_i[15]"        LOC = "P126";
+# 
+# NET "iub_temp_o"        LOC = "P106";
+# NET "iub_bkp1_o"        LOC = "P103";
+# NET "iub_bkp2_o"        LOC = "P107";
+# NET "iub_bkp3_o"        LOC = "P108";
+# 
+# NET "iub_pps_i"         LOC = "P101";
+
+#==============================================================================
+# Power board
+#==============================================================================
+
+NET "fadc_pwr_en_o[0]"  LOC = "P197";
+NET "fadc_pwr_en_o[1]"  LOC = "P196";
+NET "fadc_pwr_en_o[2]"  LOC = "P195";
+NET "fadc_pwr_en_o[3]"  LOC = "P194";
+NET "fadc_pwr_en_o[4]"  LOC = "P193";
+NET "fadc_pwr_en_o[5]"  LOC = "P192";
+
+NET "dio_pwr_en_o"      LOC = "P198";
+NET "spwrt_pwr_en_o"    LOC = "P191";
+NET "sp3_pwr_en_o"      LOC = "P189";
+
+NET "pmt_pwr_en_o[0]"   LOC = "P199";
+NET "pmt_pwr_en_o[1]"   LOC = "P200";
+NET "pmt_pwr_en_o[2]"   LOC = "P201";
+NET "pmt_pwr_en_o[3]"   LOC = "P202";
+NET "pmt_pwr_en_o[4]"   LOC = "P203";
+NET "pmt_pwr_en_o[5]"   LOC = "P205";
+
+#==============================================================================
+# IO STANDARDS
+#==============================================================================
+NET "clk_i"             IOSTANDARD = LVCMOS33;
+
+# NET "fadc1_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc1_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc1_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc2_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc2_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc2_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc3_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc3_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc3_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc4_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc4_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc4_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc5_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc5_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc5_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc6_i[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_i[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "fadc6_o[0]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[1]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[2]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[3]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[4]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[5]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[6]"        IOSTANDARD = LVCMOS33;
+# NET "fadc6_o[7]"        IOSTANDARD = LVCMOS33;
+# 
+# NET "dio_i[0]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[1]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[2]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[3]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[4]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[5]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[6]"          IOSTANDARD = LVCMOS33;
+# NET "dio_i[7]"          IOSTANDARD = LVCMOS33;
+# 
+# NET "dio_o[0]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[1]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[2]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[3]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[4]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[5]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[6]"          IOSTANDARD = LVCMOS33;
+# NET "dio_o[7]"          IOSTANDARD = LVCMOS33;
+# 
+NET "iub_shift_i"       IOSTANDARD = LVCMOS33;
+NET "iub_read_i"        IOSTANDARD = LVCMOS33;
+NET "iub_data_i"        IOSTANDARD = LVCMOS33;
+NET "iub_shift_dbg_o"   IOSTANDARD = LVCMOS33;
+NET "iub_read_dbg_o"    IOSTANDARD = LVCMOS33;
+NET "iub_data_dbg_o"    IOSTANDARD = LVCMOS33;
+
+# NET "iub_pps_i"         IOSTANDARD = LVCMOS33;
+# NET "iub_temp_o"        IOSTANDARD = LVCMOS33;
+# NET "iub_bkp1_o"        IOSTANDARD = LVCMOS33;
+# NET "iub_bkp2_o"        IOSTANDARD = LVCMOS33;
+# NET "iub_bkp3_o"        IOSTANDARD = LVCMOS33;
+# 
+# NET "temp_i[0]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[1]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[2]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[3]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[4]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[5]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[6]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[7]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[8]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[9]"         IOSTANDARD = LVCMOS33;
+# NET "temp_i[10]"        IOSTANDARD = LVCMOS33;
+# NET "temp_i[11]"        IOSTANDARD = LVCMOS33;
+# NET "temp_i[12]"        IOSTANDARD = LVCMOS33;
+# NET "temp_i[13]"        IOSTANDARD = LVCMOS33;
+# NET "temp_i[14]"        IOSTANDARD = LVCMOS33;
+# NET "temp_i[15]"        IOSTANDARD = LVCMOS33;
+
+NET "fadc_pwr_en_o[0]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[1]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[2]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[3]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[4]"  IOSTANDARD = LVCMOS33;
+NET "fadc_pwr_en_o[5]"  IOSTANDARD = LVCMOS33;
+
+NET "dio_pwr_en_o"      IOSTANDARD = LVCMOS33;
+NET "spwrt_pwr_en_o"    IOSTANDARD = LVCMOS33;
+NET "sp3_pwr_en_o"      IOSTANDARD = LVCMOS33;
+
+NET "pmt_pwr_en_o[0]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[1]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[2]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[3]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[4]"   IOSTANDARD = LVCMOS33;
+NET "pmt_pwr_en_o[5]"   IOSTANDARD = LVCMOS33;
+
