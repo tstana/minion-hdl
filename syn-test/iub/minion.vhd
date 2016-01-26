@@ -81,8 +81,18 @@ end entity minion;
 architecture behav of minion is
 
   --===========================================================================
+  -- Constants
+  --===========================================================================
+  -- Reset period in clock cycles: 4999999+1 = 5_000_000*20ns = 100 ms
+  constant c_reset_per      : natural := 5;
+
+  --===========================================================================
   -- Signals
   --===========================================================================
+  signal reset              : std_logic;
+  signal reset_count_dis    : std_logic := '0';
+  signal reset_count        : unsigned(22 downto 0);
+
   signal iub_shift_d0       : std_logic;
   signal iub_shift_fedge_p0 : std_logic;
   signal read_dly           : std_logic_vector(39 downto 0);
@@ -112,21 +122,45 @@ begin
   iub_data_dbg_o  <= iub_data_i;
 
   --===========================================================================
+  -- Power-on reset
+  --===========================================================================
+  p_reset : process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      if (reset_count_dis = '0') then
+        reset_count <= reset_count + 1;
+        reset       <= '1';
+        if (reset_count = 5) then
+          reset_count_dis <= '0';
+          reset           <= '0';
+        end if;
+      end if;
+    end if;
+  end process p_reset;
+
+  --===========================================================================
   -- IUB control
   --===========================================================================
   -- Detect falling edge on shift input
-  p_shift_fall_edge : process (clk_i)
+  p_shift_fall_edge : process (reset, clk_i)
   begin
-    if rising_edge(clk_i) then
+    if (reset = '1') then
+      iub_shift_d0       <= '0';
+      iub_shift_fedge_p0 <= '0';
+    elsif rising_edge(clk_i) then
       iub_shift_d0       <= iub_shift_i;
       iub_shift_fedge_p0 <= iub_shift_d0 and (not iub_shift_i);
     end if;
   end process p_shift_fall_edge;
 
   -- Shift and data storage registers, controlled by signals from the IUB
-  p_shift_reg : process(clk_i)
+  p_shift_reg : process(reset, clk_i)
   begin
-    if rising_edge(clk_i) then
+    if (reset = '1') then
+      sh_reg        <= (others => '0');
+      read_dly      <= (others => '0');
+      data_from_iub <= (others => '0');
+    elsif rising_edge(clk_i) then
       if (iub_shift_fedge_p0 = '1') then
         sh_reg   <= sh_reg(38 downto 0) & iub_data_i;
         read_dly <= read_dly(38 downto 0) & iub_read_i;
@@ -164,7 +198,13 @@ begin
   --===========================================================================
   process (clk_i)
   begin
-    if rising_edge(clk_i) then
+    if (reset = '1') then
+      fadc_pwr_en_o  <= (others => '0');
+      pmt_pwr_en_o   <= (others => '0');
+      dio_pwr_en_o   <= '0';
+      spwrt_pwr_en_o <= '0';
+      sp3_pwr_en_o   <= '0';
+    elsif rising_edge(clk_i) then
       fadc_pwr_en_o  <= fadc_pwr_en;
       pmt_pwr_en_o   <= pmt_pwr_en;
       dio_pwr_en_o   <= dio_pwr_en;
