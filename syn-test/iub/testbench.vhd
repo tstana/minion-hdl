@@ -32,7 +32,6 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 entity testbench is
 end entity testbench;
@@ -95,16 +94,18 @@ architecture arch of testbench is
   -- Signals
   --===========================================================================
   -- Testbench side ports
-  signal clk       : std_logic := '1';
+  signal clk       : std_logic := '0';
 
   signal data      : std_logic;
-  signal shift     : std_logic;
+  signal shift     : std_logic := '0';
   signal read      : std_logic;
 
-  signal send_read : std_logic;
   signal serialize : std_logic := '0';
-  signal bit_count : natural := 0;
+  signal wait_cnt  : natural := 0;
+  signal offset_en : std_logic := '0';
+  signal offset    : natural := 0;
 
+  signal bit_count : natural := 0;
   signal data_vect : std_logic_vector(0 to 39);
 
   signal fadc      : std_logic_vector(1 to 6);
@@ -129,19 +130,19 @@ begin
   fadc(2) <= '1';
   fadc(3) <= '0';
   fadc(4) <= '0';
-  fadc(5) <= '0';
-  fadc(6) <= '0';
+  fadc(5) <= '1';
+  fadc(6) <= '1';
 
-  pmt(1)  <= '0';
+  pmt(1)  <= '1';
   pmt(2)  <= '0';
   pmt(3)  <= '0';
   pmt(4)  <= '0';
-  pmt(5)  <= '0';
+  pmt(5)  <= '1';
   pmt(6)  <= '0';
 
-  dio     <= '0';
-  spwrt   <= '0';
-  sp3     <= '0';
+  dio     <= '1';
+  spwrt   <= '1';
+  sp3     <= '1';
 
   --===========================================================================
   -- Mimic IUB behaviour
@@ -166,15 +167,6 @@ begin
     wait for c_shift_per/2;
   end process p_shift;
 
-  -- Send IUB read signal ever so often
-  p_send_read : process
-  begin
-    send_read <= '1';
-    wait for c_shift_per;
-    send_read <= '0';
-    wait for 50*c_shift_per;
-  end process p_send_read;
-
   -- Serialize data
   p_stim_p2s : process (shift)
   begin
@@ -183,14 +175,22 @@ begin
       case serialize is
 
         when '0' =>
-          if (send_read = '1') then
+          wait_cnt <= wait_cnt + 1;
+          if (wait_cnt = 19 + offset) then
+            wait_cnt <= 0;
             read <= '1';
             serialize <= '1';
+
+            offset_en <= not offset_en;
+            if (offset_en = '1') then
+              offset <= 31;
+            else
+              offset <= 0;
+            end if;
           end if;
 
         when '1' =>
           read <= '0';
-          data <= data_vect(bit_count);
           bit_count <= bit_count + 1;
           if (bit_count = 39) then
             bit_count <= 0;
@@ -205,6 +205,9 @@ begin
     end if;
   end process p_stim_p2s;
 
+  -- Assign data output asynchronously
+  data <= data_vect(bit_count) when (serialize = '1') else '0';
+
   --===========================================================================
   -- 50 MHz clock on the minion
   --===========================================================================
@@ -217,34 +220,34 @@ begin
   --===========================================================================
   -- DUT
   --===========================================================================
---  cmp_dut : minion
---    port map
---    (
---      ---------------------------------------------------------------------------
---      -- Clock
---      ---------------------------------------------------------------------------
---      clk_i           => clk,
---
---      ---------------------------------------------------------------------------
---      -- IUB side ports
---      ---------------------------------------------------------------------------
---      -- Data shift ports
---      iub_shift_i     => shift,
---      iub_read_i      => read,
---      iub_data_i      => data,
---
---      iub_shift_dbg_o => open,
---      iub_read_dbg_o  => open,
---      iub_data_dbg_o  => open,
---
---      ---------------------------------------------------------------------------
---      -- Ports to the power board
---      ---------------------------------------------------------------------------
---      fadc_pwr_en_o  => fadc_pwr,
---      pmt_pwr_en_o   => pmt_pwr,
---      dio_pwr_en_o   => dio_pwr,
---      spwrt_pwr_en_o => spwrt_pwr,
---      sp3_pwr_en_o   => sp3_pwr
---    );
+  cmp_dut : minion
+    port map
+    (
+      ---------------------------------------------------------------------------
+      -- Clock
+      ---------------------------------------------------------------------------
+      clk_i           => clk,
+
+      ---------------------------------------------------------------------------
+      -- IUB side ports
+      ---------------------------------------------------------------------------
+      -- Data shift ports
+      iub_shift_i     => shift,
+      iub_read_i      => read,
+      iub_data_i      => data,
+
+      iub_shift_dbg_o => open,
+      iub_read_dbg_o  => open,
+      iub_data_dbg_o  => open,
+
+      ---------------------------------------------------------------------------
+      -- Ports to the power board
+      ---------------------------------------------------------------------------
+      fadc_pwr_en_o  => fadc_pwr,
+      pmt_pwr_en_o   => pmt_pwr,
+      dio_pwr_en_o   => dio_pwr,
+      spwrt_pwr_en_o => spwrt_pwr,
+      sp3_pwr_en_o   => sp3_pwr
+    );
 
 end architecture arch;

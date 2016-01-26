@@ -89,9 +89,9 @@ architecture behav of minion is
   --===========================================================================
   -- Signals
   --===========================================================================
-  signal reset              : std_logic;
+  signal reset              : std_logic := '0';
   signal reset_count_dis    : std_logic := '0';
-  signal reset_count        : unsigned(22 downto 0);
+  signal reset_count        : unsigned(22 downto 0) := (others => '0');
 
   signal iub_shift_d0       : std_logic;
   signal iub_shift_fedge_p0 : std_logic;
@@ -131,7 +131,7 @@ begin
         reset_count <= reset_count + 1;
         reset       <= '1';
         if (reset_count = 5) then
-          reset_count_dis <= '0';
+          reset_count_dis <= '1';
           reset           <= '0';
         end if;
       end if;

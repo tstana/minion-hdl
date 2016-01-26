@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/thedi/Projects/minion-hdl/syn-test/iub/testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/testbench/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/data" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data</obj_property>
+      <obj_property name="ObjectShortName">data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/shift" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">shift</obj_property>
+      <obj_property name="ObjectShortName">shift</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/read" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">read</obj_property>
+      <obj_property name="ObjectShortName">read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/serialize" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">serialize</obj_property>
+      <obj_property name="ObjectShortName">serialize</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/data_vect" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_vect[0:39]</obj_property>
+      <obj_property name="ObjectShortName">data_vect[0:39]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/fadc" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fadc[1:6]</obj_property>
+      <obj_property name="ObjectShortName">fadc[1:6]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/pmt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pmt[1:6]</obj_property>
+      <obj_property name="ObjectShortName">pmt[1:6]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dio" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">dio</obj_property>
+      <obj_property name="ObjectShortName">dio</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/spwrt" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">spwrt</obj_property>
+      <obj_property name="ObjectShortName">spwrt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/sp3" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sp3</obj_property>
+      <obj_property name="ObjectShortName">sp3</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/fadc_pwr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fadc_pwr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">fadc_pwr[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/pmt_pwr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pmt_pwr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">pmt_pwr[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dio_pwr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">dio_pwr</obj_property>
+      <obj_property name="ObjectShortName">dio_pwr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/spwrt_pwr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">spwrt_pwr</obj_property>
+      <obj_property name="ObjectShortName">spwrt_pwr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/sp3_pwr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sp3_pwr</obj_property>
+      <obj_property name="ObjectShortName">sp3_pwr</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider27" type="divider">
+      <obj_property name="label">Minion</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/cmp_dut/iub_shift_fedge_p0" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">iub_shift_fedge_p0</obj_property>
+      <obj_property name="ObjectShortName">iub_shift_fedge_p0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/cmp_dut/data_from_iub" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_from_iub[39:0]</obj_property>
+      <obj_property name="ObjectShortName">data_from_iub[39:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/cmp_dut/sh_reg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sh_reg[39:0]</obj_property>
+      <obj_property name="ObjectShortName">sh_reg[39:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/cmp_dut/read_dly" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">read_dly[39:0]</obj_property>
+      <obj_property name="ObjectShortName">read_dly[39:0]</obj_property>
+   </wvobject>
+</wave_config>
