@@ -83,8 +83,8 @@ architecture behav of minion is
   --===========================================================================
   -- Constants
   --===========================================================================
-  -- Reset period in clock cycles: 4999999+1 = 5_000_000*20ns = 100 ms
-  constant c_reset_per      : natural := 5;
+  -- Reset period in clock cycles: 5000000*20ns = 100 ms
+  constant c_reset_per      : natural := 5000000;
 
   --===========================================================================
   -- Signals
@@ -130,7 +130,7 @@ begin
       if (reset_count_dis = '0') then
         reset_count <= reset_count + 1;
         reset       <= '1';
-        if (reset_count = 5) then
+        if (reset_count = c_reset_per-1) then
           reset_count_dis <= '1';
           reset           <= '0';
         end if;
@@ -196,7 +196,7 @@ begin
   --===========================================================================
   -- Power enable outputs assignment
   --===========================================================================
-  process (clk_i)
+  process (reset, clk_i)
   begin
     if (reset = '1') then
       fadc_pwr_en_o  <= (others => '0');
