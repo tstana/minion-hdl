@@ -202,6 +202,17 @@ NET "pmt_pwr_en_o[4]"   LOC = "P203";
 NET "pmt_pwr_en_o[5]"   LOC = "P205";
 
 #==============================================================================
+# IUB and temperature sensors
+#==============================================================================
+
+NET "iub_shift_i"       LOC = "P55";
+NET "iub_read_i"        LOC = "P100";
+NET "iub_data_i"        LOC = "P99";
+NET "iub_data_dbg_o"    LOC = "P109";
+NET "iub_shift_dbg_o"   LOC = "P110";
+NET "iub_read_dbg_o"    LOC = "P111";
+
+#==============================================================================
 # IO STANDARDS
 #==============================================================================
 NET "clk_i"             IOSTANDARD = LVCMOS33;
@@ -349,4 +360,11 @@ NET "pmt_pwr_en_o[2]"   IOSTANDARD = LVCMOS33;
 NET "pmt_pwr_en_o[3]"   IOSTANDARD = LVCMOS33;
 NET "pmt_pwr_en_o[4]"   IOSTANDARD = LVCMOS33;
 NET "pmt_pwr_en_o[5]"   IOSTANDARD = LVCMOS33;
+
+NET "iub_shift_i"       IOSTANDARD = LVCMOS33;
+NET "iub_read_i"        IOSTANDARD = LVCMOS33;
+NET "iub_data_i"        IOSTANDARD = LVCMOS33;
+NET "iub_shift_dbg_o"   IOSTANDARD = LVCMOS33;
+NET "iub_read_dbg_o"    IOSTANDARD = LVCMOS33;
+NET "iub_data_dbg_o"    IOSTANDARD = LVCMOS33;
 
