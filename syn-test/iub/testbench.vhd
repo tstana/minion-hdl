@@ -32,6 +32,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity testbench is
 end entity testbench;
@@ -108,6 +109,7 @@ architecture arch of testbench is
   signal bit_count : natural := 0;
   signal data_vect : std_logic_vector(0 to 39);
 
+  signal temp_sel  : unsigned(0 to 3) := "1111";
   signal fadc      : std_logic_vector(1 to 6);
   signal pmt       : std_logic_vector(1 to 6);
   signal dio       : std_logic;
@@ -148,7 +150,7 @@ begin
   -- Mimic IUB behaviour
   --===========================================================================
   -- Assign corresponding parts of the data vector
-  data_vect( 0 to  3) <= "1101";
+  data_vect( 0 to  3) <= std_logic_vector(temp_sel);
   data_vect( 4 to  9) <= fadc;
   data_vect(10 to 15) <= (others => '0');
   data_vect(16)       <= '0';
@@ -180,6 +182,8 @@ begin
             wait_cnt <= 0;
             read <= '1';
             serialize <= '1';
+
+            temp_sel <= temp_sel-1;
 
             offset_en <= not offset_en;
             if (offset_en = '1') then
