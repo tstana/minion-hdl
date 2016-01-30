@@ -94,6 +94,8 @@ architecture behav of minion is
   signal reset_count        : unsigned(22 downto 0) := (others => '0');
 
   signal iub_shift_d0       : std_logic;
+  signal iub_shift_d1       : std_logic;
+  signal iub_shift_d2       : std_logic;
   signal iub_shift_fedge_p0 : std_logic;
   signal read_dly           : std_logic_vector(39 downto 0);
   signal sh_reg             : std_logic_vector(39 downto 0);
@@ -146,10 +148,14 @@ begin
   begin
     if (reset = '1') then
       iub_shift_d0       <= '0';
+      iub_shift_d1       <= '0';
+      iub_shift_d2       <= '0';
       iub_shift_fedge_p0 <= '0';
     elsif rising_edge(clk_i) then
       iub_shift_d0       <= iub_shift_i;
-      iub_shift_fedge_p0 <= iub_shift_d0 and (not iub_shift_i);
+      iub_shift_d1       <= iub_shift_d0;
+      iub_shift_d2       <= iub_shift_d1;
+      iub_shift_fedge_p0 <= iub_shift_d2 and (not iub_shift_d1);
     end if;
   end process p_shift_fall_edge;
 
