@@ -215,6 +215,28 @@ NET "iub_data_dbg_o"    LOC = "P109";
 NET "iub_shift_dbg_o"   LOC = "P110";
 NET "iub_read_dbg_o"    LOC = "P111";
 
+#NET "temp_i[0]"         LOC = "P109" | IOSTANDARD = LVCMOS33;
+#NET "temp_i[1]"         LOC = "P110" | IOSTANDARD = LVCMOS33;
+#NET "temp_i[2]"         LOC = "P111" | IOSTANDARD = LVCMOS33;
+NET "temp_i[3]"         LOC = "P112" | IOSTANDARD = LVCMOS33;
+NET "temp_i[4]"         LOC = "P113" | IOSTANDARD = LVCMOS33;
+NET "temp_i[5]"         LOC = "P114" | IOSTANDARD = LVCMOS33;
+NET "temp_i[6]"         LOC = "P115" | IOSTANDARD = LVCMOS33;
+NET "temp_i[7]"         LOC = "P116" | IOSTANDARD = LVCMOS33;
+NET "temp_i[8]"         LOC = "P117" | IOSTANDARD = LVCMOS33;
+NET "temp_i[9]"         LOC = "P118" | IOSTANDARD = LVCMOS33;
+NET "temp_i[10]"        LOC = "P119" | IOSTANDARD = LVCMOS33;
+NET "temp_i[11]"        LOC = "P120" | IOSTANDARD = LVCMOS33;
+NET "temp_i[12]"        LOC = "P121" | IOSTANDARD = LVCMOS33;
+NET "temp_i[13]"        LOC = "P122" | IOSTANDARD = LVCMOS33;
+NET "temp_i[14]"        LOC = "P125" | IOSTANDARD = LVCMOS33;
+NET "temp_i[15]"        LOC = "P126" | IOSTANDARD = LVCMOS33;
+
+NET "iub_temp_o"        LOC = "P106" | IOSTANDARD = LVCMOS33;
+NET "iub_bkp1_o"        LOC = "P103" | IOSTANDARD = LVCMOS33;
+NET "iub_bkp2_o"        LOC = "P107" | IOSTANDARD = LVCMOS33;
+NET "iub_bkp3_o"        LOC = "P108" | IOSTANDARD = LVCMOS33;
+
 #==============================================================================
 # IO STANDARDS
 #==============================================================================

@@ -54,6 +54,12 @@ entity minion is
     iub_read_dbg_o : out std_logic;
     iub_data_dbg_o : out std_logic;
 
+    temp_i          : in  std_logic_vector(15 downto 0);
+    iub_temp_o      : out std_logic;
+    iub_bkp1_o      : out std_logic;
+    iub_bkp2_o      : out std_logic;
+    iub_bkp3_o      : out std_logic;
+
     ---------------------------------------------------------------------------
     -- FADC & DIO side ports
     ---------------------------------------------------------------------------
@@ -213,6 +219,10 @@ begin
   spwrt_pwr_en <= data_from_iub(18);
   dio_pwr_en   <= data_from_iub(32);
   pmt_pwr_en   <= data_from_iub(25 downto 20);
+
+  -- Temperature MUX output assignment
+  -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
+  iub_temp_o <= temp_i(to_integer(unsigned(temp_sel)));
 
  --===========================================================================
   -- LVDS inputs to internal signal assignments
