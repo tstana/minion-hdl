@@ -238,12 +238,18 @@ begin
   end process p_shift_reg;
 
   -- Split IUB data into relevant fields
-  temp_sel     <= data_from_iub( 3 downto  0);
-  fadc_pwr_en  <= data_from_iub( 9 downto  4);
-  sp3_pwr_en   <= data_from_iub(17);
-  spwrt_pwr_en <= data_from_iub(18);
-  dio_pwr_en   <= data_from_iub(32);
-  pmt_pwr_en   <= data_from_iub(25 downto 20);
+--  temp_sel     <= data_from_iub( 3 downto  0);
+--  fadc_pwr_en  <= data_from_iub( 9 downto  4);
+--  sp3_pwr_en   <= data_from_iub(17);
+--  spwrt_pwr_en <= data_from_iub(18);
+--  dio_pwr_en   <= data_from_iub(32);
+--  pmt_pwr_en   <= data_from_iub(25 downto 20);
+
+  fadc_pwr_en  <= "000001";
+  sp3_pwr_en   <= '1';
+  spwrt_pwr_en <= '1';
+  dio_pwr_en   <= '0';
+  pmt_pwr_en   <= (others => '0');
 
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
@@ -350,7 +356,7 @@ begin
   wd_or <= '1' when (wd_mask /= (wd_mask'range => '0')) else '0';
 
   -- Assign the outputs
-  process (clk_i)
+  process (reset, clk_i)
   begin
     if (reset = '1') then
       dio_o <= (others => '0');
