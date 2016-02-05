@@ -350,7 +350,7 @@ begin
   wd_or <= '1' when (wd_mask /= (wd_mask'range => '0')) else '0';
 
   -- Assign the outputs
-  process (clk_i)
+  process (reset, clk_i)
   begin
     if (reset = '1') then
       dio_o <= (others => '0');
