@@ -245,7 +245,7 @@ begin
 --  dio_pwr_en   <= data_from_iub(32);
 --  pmt_pwr_en   <= data_from_iub(25 downto 20);
 
-  fadc_pwr_en  <= "000001";
+  fadc_pwr_en  <= "000011";
   sp3_pwr_en   <= '1';
   spwrt_pwr_en <= '1';
   dio_pwr_en   <= '0';
