@@ -26,7 +26,10 @@
 #==============================================================================
 # Clocks and resets
 #==============================================================================
-NET "clk_i"                 LOC = "P44";
+NET "clk_i" LOC = "P44";
+
+NET "clk_i" TNM_NET = "clk_i";
+TIMESPEC TS_CLK50MEG = PERIOD "clk_i" 50 MHz HIGH 50%;
 
 #==============================================================================
 # FADCs and DIO
@@ -183,7 +186,7 @@ NET "dio_o[7]"          LOC = "P15";
 # IUB and temperature sensors
 #==============================================================================
 
-NET "iub_clk_i"         LOC = "P55";
+NET "iub_shift_i"       LOC = "P55";
 NET "iub_read_i"        LOC = "P100";
 NET "iub_data_i"        LOC = "P99";
 
@@ -364,7 +367,7 @@ NET "dio_o[5]"          IOSTANDARD = LVCMOS33;
 NET "dio_o[6]"          IOSTANDARD = LVCMOS33;
 NET "dio_o[7]"          IOSTANDARD = LVCMOS33;
 
-NET "iub_clk_i"         IOSTANDARD = LVCMOS33;
+NET "iub_shift_i"       IOSTANDARD = LVCMOS33;
 NET "iub_read_i"        IOSTANDARD = LVCMOS33;
 NET "iub_data_i"        IOSTANDARD = LVCMOS33;
 NET "iub_pps_i"         IOSTANDARD = LVCMOS33;
