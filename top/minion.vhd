@@ -239,11 +239,16 @@ begin
 
   -- Split IUB data into relevant fields
   temp_sel     <= data_from_iub( 3 downto  0);
-  fadc_pwr_en  <= data_from_iub( 9 downto  4);
-  sp3_pwr_en   <= data_from_iub(17);
-  spwrt_pwr_en <= data_from_iub(18);
-  dio_pwr_en   <= data_from_iub(32);
-  pmt_pwr_en   <= data_from_iub(25 downto 20);
+--  fadc_pwr_en  <= data_from_iub( 9 downto  4);
+--  sp3_pwr_en   <= data_from_iub(17);
+--  spwrt_pwr_en <= data_from_iub(18);
+--  dio_pwr_en   <= data_from_iub(32);
+--  pmt_pwr_en   <= data_from_iub(25 downto 20);
+  fadc_pwr_en  <= (others => '1');
+  sp3_pwr_en   <= '1';
+  spwrt_pwr_en <= '1';
+  dio_pwr_en   <= '1';
+  pmt_pwr_en   <= (others => '1');
 
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
