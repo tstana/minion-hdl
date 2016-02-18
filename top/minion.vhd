@@ -176,6 +176,9 @@ architecture behav of minion is
   signal hit                : unsigned(3-1 downto 0);
   signal sum                : unsigned(3-1 downto 0);
 
+  signal pps                : std_logic;
+  signal pps_count          : unsigned(25 downto 0);
+
 --=============================================================================
 -- architecture begin
 --=============================================================================
@@ -457,6 +460,27 @@ begin
       sp3_pwr_en_o   <= sp3_pwr_en;
     end if;
   end process;
+
+  --===========================================================================
+  -- PPS test
+  --===========================================================================
+  p_pps : process (reset, clk_i)
+  begin
+    if (reset = '1') then
+      pps_count <= (others => '0');
+      pps <= '0';
+    elsif rising_edge(clk_i) then
+      pps_count <= pps_count + 1;
+      if (pps_count = 49999999) then
+        pps <= '1';
+        pps_count <= (others => '0');
+      elsif (pps_count > 4999) then
+        pps <= '0';
+      end if;
+    end if;
+  end process p_pps;
+
+  iub_bkp1_o <= pps;
 
 end architecture behav;
 --=============================================================================
