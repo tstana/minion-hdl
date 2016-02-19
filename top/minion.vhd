@@ -80,7 +80,6 @@ entity minion is
 
     -- PPS port IUB -> DIO
     iub_pps_i      : in  std_logic;
-    pps_o          : out std_logic;
 
     -- Backup signals to the IUB
     iub_bkp1_o      : out std_logic;
