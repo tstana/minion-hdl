@@ -226,12 +226,10 @@ begin
       data_from_iub <= (others => '0');
     elsif rising_edge(clk_i) then
       if (iub_shift_fedge_p0 = '1') then
-        sh_reg   <= sh_reg(38 downto 0) & iub_data_i;
-        read_dly <= read_dly(38 downto 0) & iub_read_i;
-        if (read_dly(39) = '1') then
-          for i in 0 to 39 loop
-            data_from_iub(i) <= sh_reg(39-i);
-          end loop;
+        sh_reg   <= iub_data_i & sh_reg(39 downto 1);
+        read_dly <= iub_read_i & read_dly(39 downto 1);
+        if (read_dly(0) = '1') then
+          data_from_iub <= sh_reg;
         end if;
       end if;
     end if;
