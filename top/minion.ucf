@@ -30,6 +30,7 @@ NET "clk_i" LOC = "P44";
 
 NET "clk_i" TNM_NET = "clk_i";
 TIMESPEC TS_CLK50MEG = PERIOD "clk_i" 50 MHz HIGH 50%;
+OFFSET = IN 10ns BEFORE "clk_i";
 
 #==============================================================================
 # FADCs and DIO
