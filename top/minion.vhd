@@ -159,6 +159,7 @@ architecture behav of minion is
   signal do_write_in        : std_logic;
   signal pseudo_pps_in      : std_logic;
   signal twohits_out        : std_logic;
+  signal twohits_count      : unsigned(3 downto 0);
 
   signal trig_or            : std_logic;
   signal writing_or         : std_logic;
@@ -172,9 +173,7 @@ architecture behav of minion is
   signal pseudo_pps_out     : std_logic_vector(5 downto 0);
 
   -- TODO: Remove me!
-  signal trig               : unsigned(3-1 downto 0);
-  signal hit                : unsigned(3-1 downto 0);
-  signal sum                : unsigned(3-1 downto 0);
+  signal hits               : unsigned(3-1 downto 0);
 
 --=============================================================================
 -- architecture begin
@@ -311,28 +310,22 @@ begin
   --===========================================================================
   -- One-hit veto implementation
   --===========================================================================
-  -- TODO: Remove, this is temporary...
-  twohits_out <= '1' when (twohits_mask /= (twohits_mask'range => '0')) else '0';
+  hits  <= f_count_ones(hit_mask);
 
---  trig <= f_count_ones(trig_mask);
---  hit  <= f_count_ones(hit_mask);
---  sum  <= trig + hit;
---
---  process (clk_i)
---  begin
---    if rising_edge(clk_i) then
---      trig_or <= '0';
---      if (onehit_en = '1') then
---        if (trig > 1) or (hit > 1) or (sum > 1) then
---          trig_or <= '1';
---        end if;
---      else
---        if (trig /= (trig'range => '0')) then
---          trig_or <= '1';
---        end if;
---      end if;
---    end if;
---  end process;
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      if (hits > 1) or (twohits_mask /= (twohits_mask'range => '0')) then
+        twohits_out <= '1';
+      elsif (twohits_count = 4) then --(twohits_count => '1')) then
+        twohits_out <= '0';
+      end if;
+
+      if (twohits_out = '1') then
+        twohits_count <= twohits_count + 1;
+      end if;
+    end if;
+  end process;
 
   --===========================================================================
   -- FADC -> DIO outputs
