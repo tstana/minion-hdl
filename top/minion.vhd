@@ -242,8 +242,8 @@ begin
   fadc_pwr_en  <= data_from_iub( 9 downto  4);
   sp3_pwr_en   <= data_from_iub(17);
   spwrt_pwr_en <= data_from_iub(18);
-  dio_pwr_en   <= data_from_iub(32);
   pmt_pwr_en   <= data_from_iub(25 downto 20);
+  dio_pwr_en   <= data_from_iub(32);
 
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
