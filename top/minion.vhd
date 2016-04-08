@@ -473,7 +473,7 @@ begin
       if (pps_count = 49999999) then
         pps <= '1';
         pps_count <= (others => '0');
-      elsif (pps_count > 4999) then
+      elsif (pps_count > 4999999) then
         pps <= '0';
       end if;
     end if;
