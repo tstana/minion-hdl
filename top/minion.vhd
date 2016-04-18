@@ -252,7 +252,7 @@ begin
   iub_temp_o <= temp_i(to_integer(unsigned(temp_sel)));
 
   -- PPS
-  pps_out <= iub_pps_i;
+  pps_out <= pps; -- iub_pps_i;
 
   --===========================================================================
   -- LVDS inputs to internal signal assignments
