@@ -80,7 +80,6 @@ entity minion is
 
     -- PPS port IUB -> DIO
     iub_pps_i      : in  std_logic;
-    pps_o          : out std_logic;
 
     -- Backup signals to the IUB
     iub_bkp1_o      : out std_logic;
@@ -103,7 +102,6 @@ architecture behav of minion is
   --===========================================================================
   -- Functions
   --===========================================================================
-  -- TODO: Optimize me!
   function f_count_ones(v : std_logic_vector) return unsigned is
       variable n : unsigned(3-1 downto 0);
   begin
@@ -159,6 +157,7 @@ architecture behav of minion is
   signal do_write_in        : std_logic;
   signal pseudo_pps_in      : std_logic;
   signal twohits_out        : std_logic;
+  signal twohits_count      : unsigned(3 downto 0);
 
   signal trig_or            : std_logic;
   signal writing_or         : std_logic;
@@ -171,10 +170,7 @@ architecture behav of minion is
   signal do_write_out       : std_logic_vector(5 downto 0);
   signal pseudo_pps_out     : std_logic_vector(5 downto 0);
 
-  -- TODO: Remove me!
-  signal trig               : unsigned(3-1 downto 0);
-  signal hit                : unsigned(3-1 downto 0);
-  signal sum                : unsigned(3-1 downto 0);
+  signal hits               : unsigned(2 downto 0);
 
 --=============================================================================
 -- architecture begin
@@ -226,12 +222,10 @@ begin
       data_from_iub <= (others => '0');
     elsif rising_edge(clk_i) then
       if (iub_shift_fedge_p0 = '1') then
-        sh_reg   <= sh_reg(38 downto 0) & iub_data_i;
-        read_dly <= read_dly(38 downto 0) & iub_read_i;
-        if (read_dly(39) = '1') then
-          for i in 0 to 39 loop
-            data_from_iub(i) <= sh_reg(39-i);
-          end loop;
+        sh_reg   <= iub_data_i & sh_reg(39 downto 1);
+        read_dly <= iub_read_i & read_dly(39 downto 1);
+        if (read_dly(0) = '1') then
+          data_from_iub <= sh_reg;
         end if;
       end if;
     end if;
@@ -239,16 +233,11 @@ begin
 
   -- Split IUB data into relevant fields
   temp_sel     <= data_from_iub( 3 downto  0);
---  fadc_pwr_en  <= data_from_iub( 9 downto  4);
---  sp3_pwr_en   <= data_from_iub(17);
---  spwrt_pwr_en <= data_from_iub(18);
---  dio_pwr_en   <= data_from_iub(32);
---  pmt_pwr_en   <= data_from_iub(25 downto 20);
   fadc_pwr_en  <= (others => '1');
   sp3_pwr_en   <= '1';
   spwrt_pwr_en <= '1';
-  dio_pwr_en   <= '1';
   pmt_pwr_en   <= (others => '1');
+  dio_pwr_en   <= '1';
 
   -- Temperature MUX output assignment
   -- NOTE: Should not be clocked, since temp sensor output is duty-cycle-encoded
@@ -318,28 +307,22 @@ begin
   --===========================================================================
   -- One-hit veto implementation
   --===========================================================================
-  -- TODO: Remove, this is temporary...
-  twohits_out <= '1' when (twohits_mask /= (twohits_mask'range => '0')) else '0';
+  hits  <= f_count_ones(hit_mask);
 
---  trig <= f_count_ones(trig_mask);
---  hit  <= f_count_ones(hit_mask);
---  sum  <= trig + hit;
---
---  process (clk_i)
---  begin
---    if rising_edge(clk_i) then
---      trig_or <= '0';
---      if (onehit_en = '1') then
---        if (trig > 1) or (hit > 1) or (sum > 1) then
---          trig_or <= '1';
---        end if;
---      else
---        if (trig /= (trig'range => '0')) then
---          trig_or <= '1';
---        end if;
---      end if;
---    end if;
---  end process;
+  process (clk_i)
+  begin
+    if rising_edge(clk_i) then
+      if (hits > 1) or (twohits_mask /= (twohits_mask'range => '0')) then
+        twohits_out <= '1';
+      elsif (twohits_count = 4) then --(twohits_count => '1')) then
+        twohits_out <= '0';
+      end if;
+
+      if (twohits_out = '1') then
+        twohits_count <= twohits_count + 1;
+      end if;
+    end if;
+  end process;
 
   --===========================================================================
   -- FADC -> DIO outputs
